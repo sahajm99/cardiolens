@@ -49,6 +49,15 @@ def test_factor_file(df, tmp_path, monkeypatch):
     ratios = [f["ratio"] for f in d["factors"]]
     assert ratios == sorted(ratios, reverse=True)
 
+def test_factor_labels_readable(df, tmp_path, monkeypatch):
+    import pipeline.io as io
+    monkeypatch.setattr(io, "OUT_DIR", tmp_path)
+    d = json.loads(write_prevalence_by_factor(df).read_text(encoding="utf-8"))
+    smoking = next(f for f in d["factors"] if f["id"] == "smoking")
+    assert smoking["label"] == "Smoking (100+ cigarettes ever)"
+    assert smoking["exposed"]["label"] == "smokers"
+    assert smoking["unexposed"]["label"] == "non-smokers"
+
 def test_heatmap_file(df, tmp_path, monkeypatch):
     import pipeline.io as io
     monkeypatch.setattr(io, "OUT_DIR", tmp_path)
@@ -65,6 +74,15 @@ def test_factor_by_age_file(df, tmp_path, monkeypatch):
     smoking = next(f for f in d["factors"] if f["id"] == "smoking")
     assert [r["age"] for r in smoking["rows"]] == AGE_BANDS
     assert all(r["exposed"]["p"] is not None for r in smoking["rows"])
+
+def test_factor_by_age_labels_readable(df, tmp_path, monkeypatch):
+    import pipeline.io as io
+    monkeypatch.setattr(io, "OUT_DIR", tmp_path)
+    d = json.loads(write_factor_by_age(df).read_text(encoding="utf-8"))
+    ids = [f["id"] for f in d["factors"]]
+    assert set(["smoking", "inactivity", "obesity", "short_sleep", "sex", "diabetes"]).issubset(ids)
+    for f in d["factors"]:
+        assert f["exposed_label"] and f["unexposed_label"]
 
 def test_bmi_outcomes_file(df, tmp_path, monkeypatch):
     import pipeline.io as io
@@ -89,3 +107,6 @@ def test_lifestyle_summary(df, tmp_path, monkeypatch):
     assert sum(r["n"] for r in d["rows"]) == 319795
     for r in d["rows"]:
         assert r["bmi_lo"] <= r["bmi_mean"] <= r["bmi_hi"] and 0 <= r["activity_lo"] <= r["activity_rate"] <= r["activity_hi"] <= 1
+        assert r["sleep_lo"] <= r["sleep_mean"] <= r["sleep_hi"]
+    white = next(r for r in d["rows"] if r["key"] == ["White"])
+    assert 6.5 < white["sleep_mean"] < 7.5

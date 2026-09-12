@@ -1,16 +1,16 @@
 {
  "schema": "factor_prevalence.v1",
  "id": "prevalence_by_factor",
- "generated_at": "2026-09-12T13:51:00.613641+00:00",
+ "generated_at": "2026-09-12T15:42:36.754006+00:00",
  "n_total": 319795,
  "events_total": 27373,
  "factors": [
   {
    "id": "poor_health",
-   "label": "General health",
+   "label": "Fair or poor self-rated health",
    "column": "GenHealth",
    "exposed": {
-    "label": "Fair or poor health",
+    "label": "adults rating their health fair or poor",
     "n": 45966,
     "events": 10934,
     "p": 0.237871,
@@ -18,7 +18,7 @@
     "hi": 0.241786
    },
    "unexposed": {
-    "label": "Excellent or very good health",
+    "label": "adults rating it excellent or very good",
     "n": 180700,
     "events": 6881,
     "p": 0.03808,
@@ -34,7 +34,7 @@
    "label": "Stroke history",
    "column": "Stroke",
    "exposed": {
-    "label": "History of stroke",
+    "label": "adults with a prior stroke",
     "n": 12069,
     "events": 4389,
     "p": 0.363659,
@@ -42,7 +42,7 @@
     "hi": 0.372283
    },
    "unexposed": {
-    "label": "No history of stroke",
+    "label": "adults with no stroke history",
     "n": 307726,
     "events": 22984,
     "p": 0.07469,
@@ -58,7 +58,7 @@
    "label": "Kidney disease",
    "column": "KidneyDisease",
    "exposed": {
-    "label": "Kidney disease",
+    "label": "adults with kidney disease",
     "n": 11779,
     "events": 3455,
     "p": 0.293319,
@@ -66,7 +66,7 @@
     "hi": 0.301607
    },
    "unexposed": {
-    "label": "No kidney disease",
+    "label": "adults without kidney disease",
     "n": 308016,
     "events": 23918,
     "p": 0.077652,
@@ -79,10 +79,10 @@
   },
   {
    "id": "diff_walking",
-   "label": "Difficulty walking",
+   "label": "Serious difficulty walking",
    "column": "DiffWalking",
    "exposed": {
-    "label": "Difficulty walking",
+    "label": "adults with serious difficulty walking",
     "n": 44410,
     "events": 10028,
     "p": 0.225805,
@@ -90,7 +90,7 @@
     "hi": 0.229717
    },
    "unexposed": {
-    "label": "No difficulty walking",
+    "label": "adults without difficulty walking",
     "n": 275385,
     "events": 17345,
     "p": 0.062985,
@@ -106,7 +106,7 @@
    "label": "Diabetes",
    "column": "Diabetic",
    "exposed": {
-    "label": "Diabetic",
+    "label": "adults with diabetes",
     "n": 40802,
     "events": 8957,
     "p": 0.219524,
@@ -114,7 +114,7 @@
     "hi": 0.223566
    },
    "unexposed": {
-    "label": "Non-diabetic",
+    "label": "adults without diabetes",
     "n": 269653,
     "events": 17519,
     "p": 0.064969,
@@ -130,7 +130,7 @@
    "label": "Skin cancer",
    "column": "SkinCancer",
    "exposed": {
-    "label": "Skin cancer",
+    "label": "adults with skin cancer",
     "n": 29819,
     "events": 4980,
     "p": 0.167008,
@@ -138,7 +138,7 @@
     "hi": 0.171284
    },
    "unexposed": {
-    "label": "No skin cancer",
+    "label": "adults without skin cancer",
     "n": 289976,
     "events": 22393,
     "p": 0.077224,
@@ -151,10 +151,10 @@
   },
   {
    "id": "smoking",
-   "label": "Smoking",
+   "label": "Smoking (100+ cigarettes ever)",
    "column": "Smoking",
    "exposed": {
-    "label": "Smoker",
+    "label": "smokers",
     "n": 131908,
     "events": 16037,
     "p": 0.121577,
@@ -162,7 +162,7 @@
     "hi": 0.123352
    },
    "unexposed": {
-    "label": "Non-smoker",
+    "label": "non-smokers",
     "n": 187887,
     "events": 11336,
     "p": 0.060334,
@@ -175,10 +175,10 @@
   },
   {
    "id": "inactivity",
-   "label": "Physical inactivity",
+   "label": "No physical activity",
    "column": "PhysicalActivity",
    "exposed": {
-    "label": "No physical activity",
+    "label": "inactive adults",
     "n": 71838,
     "events": 9884,
     "p": 0.137587,
@@ -186,7 +186,7 @@
     "hi": 0.140126
    },
    "unexposed": {
-    "label": "Physically active",
+    "label": "physically active adults",
     "n": 247957,
     "events": 17489,
     "p": 0.070532,
@@ -199,10 +199,10 @@
   },
   {
    "id": "short_sleep",
-   "label": "Short sleep",
+   "label": "Short sleep (under 6 hours)",
    "column": "SleepBand",
    "exposed": {
-    "label": "Under 6h",
+    "label": "short sleepers",
     "n": 30265,
     "events": 3745,
     "p": 0.12374,
@@ -210,7 +210,7 @@
     "hi": 0.127498
    },
    "unexposed": {
-    "label": "6-7h",
+    "label": "adults sleeping 6 to 7 hours",
     "n": 164472,
     "events": 11752,
     "p": 0.071453,
@@ -223,10 +223,10 @@
   },
   {
    "id": "obesity",
-   "label": "Obesity",
+   "label": "Obesity (BMI 30 or more)",
    "column": "BMIClass",
    "exposed": {
-    "label": "Obese",
+    "label": "adults with obesity",
     "n": 102842,
     "events": 10672,
     "p": 0.103771,
@@ -234,7 +234,7 @@
     "hi": 0.10565
    },
    "unexposed": {
-    "label": "Normal weight",
+    "label": "normal-weight adults",
     "n": 97331,
     "events": 6309,
     "p": 0.06482,
@@ -247,10 +247,10 @@
   },
   {
    "id": "sex",
-   "label": "Sex",
+   "label": "Male sex",
    "column": "Sex",
    "exposed": {
-    "label": "Male",
+    "label": "men",
     "n": 151990,
     "events": 16139,
     "p": 0.106185,
@@ -258,7 +258,7 @@
     "hi": 0.107743
    },
    "unexposed": {
-    "label": "Female",
+    "label": "women",
     "n": 167805,
     "events": 11234,
     "p": 0.066947,
@@ -274,7 +274,7 @@
    "label": "Asthma",
    "column": "Asthma",
    "exposed": {
-    "label": "Asthma",
+    "label": "adults with asthma",
     "n": 42872,
     "events": 4933,
     "p": 0.115063,
@@ -282,7 +282,7 @@
     "hi": 0.118119
    },
    "unexposed": {
-    "label": "No asthma",
+    "label": "adults without asthma",
     "n": 276923,
     "events": 22440,
     "p": 0.081033,
@@ -295,10 +295,10 @@
   },
   {
    "id": "alcohol",
-   "label": "Alcohol drinking",
+   "label": "Heavy drinking",
    "column": "AlcoholDrinking",
    "exposed": {
-    "label": "Drinker",
+    "label": "heavy drinkers",
     "n": 21777,
     "events": 1141,
     "p": 0.052395,
@@ -306,7 +306,7 @@
     "hi": 0.055434
    },
    "unexposed": {
-    "label": "Non-drinker",
+    "label": "adults who do not drink heavily",
     "n": 298018,
     "events": 26232,
     "p": 0.088022,

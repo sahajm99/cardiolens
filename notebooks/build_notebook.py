@@ -937,6 +937,13 @@ md("""
 
 Every limit below is a property of the data, not a caveat added for modesty.
 
+**A third party's extract, not the CDC release.** This file is a Kaggle extract of the
+CDC Behavioral Risk Factor Surveillance System 2020 annual survey, prepared by kamilpytlak.
+It reduces the 401,958 respondents in the 2020 release to the 319,795 rows analysed here by
+dropping rows with a missing value in the columns kept, a cleaning step performed before
+the file reached this project and not repeated here. Section 1 has the sha256 and the row
+count for anyone who wants to check the numbers against the same bytes.
+
 **No survey design information.** BRFSS is stratified, clustered and weighted. This
 extract carries none of that. Every proportion above is an unweighted sample proportion,
 not a national estimate, and every Wilson interval treats 319,795 rows as a simple random

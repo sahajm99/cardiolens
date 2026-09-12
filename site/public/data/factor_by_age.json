@@ -1,7 +1,7 @@
 {
  "schema": "factor_by_age.v1",
  "id": "factor_by_age",
- "generated_at": "2026-09-12T13:51:01.039700+00:00",
+ "generated_at": "2026-09-12T15:42:37.180394+00:00",
  "age_bands": [
   "18-24",
   "25-29",
@@ -20,9 +20,9 @@
  "factors": [
   {
    "id": "smoking",
-   "label": "Smoking",
-   "exposed_label": "Smoker",
-   "unexposed_label": "Non-smoker",
+   "label": "Smoking (100+ cigarettes ever)",
+   "exposed_label": "smokers",
+   "unexposed_label": "non-smokers",
    "rows": [
     {
      "age": "18-24",
@@ -301,9 +301,9 @@
   },
   {
    "id": "inactivity",
-   "label": "Physical inactivity",
-   "exposed_label": "No physical activity",
-   "unexposed_label": "Physically active",
+   "label": "No physical activity",
+   "exposed_label": "inactive adults",
+   "unexposed_label": "physically active adults",
    "rows": [
     {
      "age": "18-24",
@@ -582,9 +582,9 @@
   },
   {
    "id": "obesity",
-   "label": "Obesity",
-   "exposed_label": "Obese",
-   "unexposed_label": "Normal weight",
+   "label": "Obesity (BMI 30 or more)",
+   "exposed_label": "adults with obesity",
+   "unexposed_label": "normal-weight adults",
    "rows": [
     {
      "age": "18-24",
@@ -863,9 +863,9 @@
   },
   {
    "id": "short_sleep",
-   "label": "Short sleep",
-   "exposed_label": "Under 6h",
-   "unexposed_label": "6-7h",
+   "label": "Short sleep (under 6 hours)",
+   "exposed_label": "short sleepers",
+   "unexposed_label": "adults sleeping 6 to 7 hours",
    "rows": [
     {
      "age": "18-24",
@@ -1144,9 +1144,9 @@
   },
   {
    "id": "sex",
-   "label": "Sex",
-   "exposed_label": "Male",
-   "unexposed_label": "Female",
+   "label": "Male sex",
+   "exposed_label": "men",
+   "unexposed_label": "women",
    "rows": [
     {
      "age": "18-24",
@@ -1426,8 +1426,8 @@
   {
    "id": "diabetes",
    "label": "Diabetes",
-   "exposed_label": "Diabetic",
-   "unexposed_label": "Non-diabetic",
+   "exposed_label": "adults with diabetes",
+   "unexposed_label": "adults without diabetes",
    "rows": [
     {
      "age": "18-24",

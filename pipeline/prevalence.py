@@ -284,6 +284,7 @@ def write_race_lifestyle(df):
         sub = df[df["Race"] == race]
         n = len(sub)
         bmi_mean, bmi_lo, bmi_hi = mean_ci(sub["BMI"])
+        sleep_mean, sleep_lo, sleep_hi = mean_ci(sub["SleepTime"])
         events = int((sub["PhysicalActivity"] == "Yes").sum())
         suppressed = n < SUPPRESS_N
         if suppressed:
@@ -298,6 +299,9 @@ def write_race_lifestyle(df):
             "bmi_mean": round6(bmi_mean),
             "bmi_lo": round6(bmi_lo),
             "bmi_hi": round6(bmi_hi),
+            "sleep_mean": round6(sleep_mean),
+            "sleep_lo": round6(sleep_lo),
+            "sleep_hi": round6(sleep_hi),
             "activity_rate": activity_rate,
             "activity_lo": activity_lo,
             "activity_hi": activity_hi,
@@ -309,6 +313,7 @@ def write_race_lifestyle(df):
         "id": "race_lifestyle",
         "generated_at": now_iso(),
         "group_by": ["Race"],
+        "metrics": ["bmi_mean", "sleep_mean", "activity_rate"],
         "n_total": int(len(df)),
         "rows": rows,
     }
