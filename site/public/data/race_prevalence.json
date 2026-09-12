@@ -1,0 +1,119 @@
+{
+ "schema": "race_prevalence.v1",
+ "id": "race_prevalence",
+ "generated_at": "2026-09-12T14:17:35.048380+00:00",
+ "ci": {
+  "crude": "wilson",
+  "standardised": "fay-feuer gamma",
+  "level": 0.95
+ },
+ "standard_population": {
+  "18-24": 0.06586719617254803,
+  "25-29": 0.05301833987398177,
+  "30-34": 0.0586406916931159,
+  "35-39": 0.06425991650901358,
+  "40-44": 0.06568582998483403,
+  "45-49": 0.06814052752544598,
+  "50-54": 0.07936959614753201,
+  "55-59": 0.09305023530699354,
+  "60-64": 0.1053362310229991,
+  "65-69": 0.10679028752794759,
+  "70-74": 0.09714035554026798,
+  "75-79": 0.06717428352538345,
+  "80 or older": 0.07552650916993699
+ },
+ "n_total": 319795,
+ "events_total": 27373,
+ "rows": [
+  {
+   "key": [
+    "White"
+   ],
+   "n": 245212,
+   "events": 22507,
+   "crude": 0.091786,
+   "crude_lo": 0.090649,
+   "crude_hi": 0.092935,
+   "std": 0.084615,
+   "std_lo": 0.083511,
+   "std_hi": 0.085732,
+   "min_band_n": 10892,
+   "small_n": false
+  },
+  {
+   "key": [
+    "Black"
+   ],
+   "n": 22939,
+   "events": 1729,
+   "crude": 0.075374,
+   "crude_lo": 0.072028,
+   "crude_hi": 0.078862,
+   "std": 0.083904,
+   "std_lo": 0.079912,
+   "std_hi": 0.08806,
+   "min_band_n": 1074,
+   "small_n": false
+  },
+  {
+   "key": [
+    "Hispanic"
+   ],
+   "n": 27446,
+   "events": 1443,
+   "crude": 0.052576,
+   "crude_lo": 0.049998,
+   "crude_hi": 0.05528,
+   "std": 0.083412,
+   "std_lo": 0.078711,
+   "std_hi": 0.088365,
+   "min_band_n": 669,
+   "small_n": false
+  },
+  {
+   "key": [
+    "Asian"
+   ],
+   "n": 8068,
+   "events": 266,
+   "crude": 0.03297,
+   "crude_lo": 0.02929,
+   "crude_hi": 0.037094,
+   "std": 0.051358,
+   "std_lo": 0.045049,
+   "std_hi": 0.058372,
+   "min_band_n": 248,
+   "small_n": false
+  },
+  {
+   "key": [
+    "American Indian/Alaskan Native"
+   ],
+   "n": 5202,
+   "events": 542,
+   "crude": 0.104191,
+   "crude_lo": 0.096179,
+   "crude_hi": 0.112787,
+   "std": 0.125099,
+   "std_lo": 0.114221,
+   "std_hi": 0.136926,
+   "min_band_n": 176,
+   "small_n": false
+  },
+  {
+   "key": [
+    "Other"
+   ],
+   "n": 10928,
+   "events": 886,
+   "crude": 0.081076,
+   "crude_lo": 0.076105,
+   "crude_hi": 0.086342,
+   "std": 0.10297,
+   "std_lo": 0.096123,
+   "std_hi": 0.110216,
+   "min_band_n": 424,
+   "small_n": false
+  }
+ ]
+}

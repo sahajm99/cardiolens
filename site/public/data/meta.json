@@ -1,0 +1,29 @@
+{
+ "schema": "meta.v1",
+ "id": "meta",
+ "generated_at": "2026-09-12T14:17:35.127621+00:00",
+ "source_file": "data/raw/heart_2020_cleaned.csv",
+ "sha256": "90a1e2e8bdcb4aba54314a41d35d2ac3be4763e459df33951e08e415f527f5a8",
+ "n_rows": 319795,
+ "n_columns": 18,
+ "n_duplicate_rows": 18078,
+ "n_events": 27373,
+ "files": [
+  "bmi_outcomes.json",
+  "bmi_sleep_heatmap.json",
+  "claims.json",
+  "estimator.json",
+  "factor_by_age.json",
+  "meta.json",
+  "odds_ratios.json",
+  "prevalence_by_age.json",
+  "prevalence_by_age_sex.json",
+  "prevalence_by_factor.json",
+  "prevalence_overall.json",
+  "race_genhealth.json",
+  "race_lifestyle.json",
+  "race_prevalence.json",
+  "race_stroke_hd.json",
+  "sleep_by_agegroup.json"
+ ]
+}
