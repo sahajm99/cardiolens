@@ -89,6 +89,24 @@ export function mountFigure(
   return plot;
 }
 
+/**
+ * Re-state a mounted figure's claim, context line, accessible name and table
+ * for new data, leaving the plot div and any control beside it in place, so a
+ * picker keeps its focus and Plotly keeps its canvas across a change.
+ */
+export function updateFigure(container: HTMLElement, spec: FigureSpec): void {
+  const title = container.querySelector(".fig-title");
+  if (title) title.textContent = spec.title;
+  const sub = container.querySelector(".fig-sub");
+  if (sub) sub.textContent = spec.subtitle;
+  container.querySelector(".plot")?.setAttribute("aria-label", spec.alt);
+  const old = container.querySelector("details.fig-table");
+  if (!old) return;
+  const next = buildTable(spec);
+  next.open = (old as HTMLDetailsElement).open;
+  old.replaceWith(next);
+}
+
 /** A failed fetch replaces one figure, never the story around it. */
 export function showError(
   container: HTMLElement,

@@ -4,6 +4,7 @@ import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/layout.css";
 import "./styles/figure.css";
+import "./styles/panel.css";
 
 import { loadJson } from "./data.ts";
 import { whenVisible } from "./lazy.ts";
@@ -18,6 +19,10 @@ interface ChartModule {
 /** One dynamic import per chart, so Plotly loads only when a figure needs it. */
 const CHARTS: Record<string, () => Promise<ChartModule>> = {
   age: () => import("./charts/age.ts"),
+  factors: () => import("./charts/factors.ts"),
+  "factor-by-age": () => import("./charts/factorByAge.ts"),
+  forest: () => import("./charts/forest.ts"),
+  estimator: () => import("./charts/estimator.ts"),
 };
 
 /** The first figure is above the fold; everything below it waits. */

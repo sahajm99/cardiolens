@@ -1,0 +1,116 @@
+/* The estimator panel: a form, one number, and a scale that places it. */
+
+.panel {
+  margin: var(--space-5) 0 0;
+  max-width: var(--fig-width);
+  min-height: var(--fig-h);
+}
+
+.est-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-4);
+  max-width: 46rem;
+  margin: 0 0 var(--space-5);
+}
+
+.est-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.est-out {
+  border-left: 2px solid var(--series-1);
+  padding-left: var(--space-4);
+}
+
+.est-value {
+  font-family: var(--font-ui);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+  margin: 0 0 var(--space-3);
+}
+
+.est-sentence {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--ink-2);
+  max-width: 54ch;
+  margin: 0;
+}
+
+.est-scale {
+  max-width: 34rem;
+  margin-top: var(--space-5);
+}
+
+.est-track {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--grid);
+}
+
+.est-mark {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.est-mark-profile {
+  background: var(--series-1);
+}
+
+.est-mark-age {
+  background: var(--surface);
+  border: 2px solid var(--series-2);
+}
+
+.est-mark-all {
+  background: var(--ink-3);
+}
+
+.est-ends {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  margin-top: var(--space-3);
+}
+
+.est-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.est-key li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.est-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}

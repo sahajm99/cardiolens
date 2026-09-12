@@ -54,3 +54,26 @@ export const CONFIG: Partial<Plotly.Config> = {
   responsive: true,
   scrollZoom: false,
 };
+
+/**
+ * A CSS hex colour as `rgba(...)`, for fills that must sit behind a line
+ * without being read as a second series. Falls back to the input if the token
+ * is not a hex, so a theme change can never leave a chart colourless.
+ */
+export function hexToRgba(hex: string, alpha: number): string {
+  const m = /^#?([\da-f]{3}|[\da-f]{6})$/i.exec(hex.trim());
+  if (!m) return hex;
+  const digits = m[1]!;
+  const full =
+    digits.length === 3
+      ? digits
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : digits;
+  const n = Number.parseInt(full, 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}

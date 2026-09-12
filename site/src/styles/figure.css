@@ -158,3 +158,38 @@
 .fig .plot .hoverlayer .hovertext text {
   font-family: var(--font-ui);
 }
+
+/* Controls beside a figure: a native picker, styled to match the page. */
+.fig-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.fig-picker select,
+.panel select {
+  background: var(--surface-2);
+  border: 1px solid var(--grid);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  padding: var(--space-2) var(--space-3);
+}
+
+/* The forest plot carries long level names beside 45 rows: below about 600px
+   it scrolls sideways rather than shrinking its labels into illegibility. */
+@media (max-width: 640px) {
+  .fig[data-chart="forest"] {
+    overflow-x: auto;
+  }
+
+  .fig[data-chart="forest"] .plot {
+    height: var(--fig-h);
+    min-width: 600px;
+  }
+}
