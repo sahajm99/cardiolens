@@ -38,7 +38,7 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
     df["Sex"] = pd.Categorical(df["Sex"], categories=["Female", "Male"])
     for c in BINARY_COLS:
         df[c] = pd.Categorical(df[c], categories=["No", "Yes"])
-    for c in ["Race", "GenHealth", "Diabetic", "Sex", *BINARY_COLS]:
+    for c in ["AgeCategory", "Race", "GenHealth", "Diabetic", "Sex", *BINARY_COLS]:
         if df[c].isna().any():
             raise ValueError(f"{c} has values outside the expected set")
     df["BMIClass"] = pd.cut(df["BMI"], bins=BMI_EDGES, labels=BMI_CLASSES, right=False, ordered=True)

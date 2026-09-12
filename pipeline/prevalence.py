@@ -258,7 +258,12 @@ def write_race_genhealth(df):
         sub = g.loc[race]
         n = int(sub.sum())
         suppressed = n < SUPPRESS_N
-        shares = None if suppressed else {str(level): int(sub[level]) / n for level in GENHEALTH}
+        if suppressed:
+            shares = None
+        else:
+            shares = {str(level): round6(int(sub[level]) / n) for level in GENHEALTH[:-1]}
+            last = str(GENHEALTH[-1])
+            shares[last] = round6(1 - sum(shares.values()))
         rows.append({"key": [race], "n": n, "shares": shares, "suppressed": suppressed, "small_n": n < SMALL_N})
     obj = {
         "schema": "distribution.v1",

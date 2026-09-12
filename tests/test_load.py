@@ -52,3 +52,11 @@ def test_add_derived_rejects_unexpected_race_value():
     bad.loc[0, "Race"] = "Martian"
     with pytest.raises(ValueError):
         add_derived(bad)
+
+
+def test_add_derived_rejects_unexpected_age_category_value():
+    raw = load_raw()
+    bad = raw.copy()
+    bad.loc[0, "AgeCategory"] = "0-17"
+    with pytest.raises(ValueError):
+        add_derived(bad)
