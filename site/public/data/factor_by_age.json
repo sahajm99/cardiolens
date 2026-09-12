@@ -1,0 +1,1708 @@
+{
+ "schema": "factor_by_age.v1",
+ "id": "factor_by_age",
+ "generated_at": "2026-09-12T13:51:01.039700+00:00",
+ "age_bands": [
+  "18-24",
+  "25-29",
+  "30-34",
+  "35-39",
+  "40-44",
+  "45-49",
+  "50-54",
+  "55-59",
+  "60-64",
+  "65-69",
+  "70-74",
+  "75-79",
+  "80 or older"
+ ],
+ "factors": [
+  {
+   "id": "smoking",
+   "label": "Smoking",
+   "exposed_label": "Smoker",
+   "unexposed_label": "Non-smoker",
+   "rows": [
+    {
+     "age": "18-24",
+     "exposed": {
+      "n": 3284,
+      "events": 32,
+      "p": 0.009744,
+      "lo": 0.006911,
+      "hi": 0.013723,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17780,
+      "events": 98,
+      "p": 0.005512,
+      "lo": 0.004525,
+      "hi": 0.006712,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "25-29",
+     "exposed": {
+      "n": 5154,
+      "events": 59,
+      "p": 0.011447,
+      "lo": 0.008885,
+      "hi": 0.014737,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11801,
+      "events": 74,
+      "p": 0.006271,
+      "lo": 0.004998,
+      "hi": 0.007864,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "30-34",
+     "exposed": {
+      "n": 7172,
+      "events": 133,
+      "p": 0.018544,
+      "lo": 0.01567,
+      "hi": 0.021934,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11581,
+      "events": 93,
+      "p": 0.00803,
+      "lo": 0.00656,
+      "hi": 0.009827,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "35-39",
+     "exposed": {
+      "n": 8642,
+      "events": 182,
+      "p": 0.02106,
+      "lo": 0.018239,
+      "hi": 0.024307,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11908,
+      "events": 114,
+      "p": 0.009573,
+      "lo": 0.007976,
+      "hi": 0.011487,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "40-44",
+     "exposed": {
+      "n": 9081,
+      "events": 319,
+      "p": 0.035128,
+      "lo": 0.031534,
+      "hi": 0.039116,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11925,
+      "events": 167,
+      "p": 0.014004,
+      "lo": 0.012046,
+      "hi": 0.016275,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "45-49",
+     "exposed": {
+      "n": 8725,
+      "events": 465,
+      "p": 0.053295,
+      "lo": 0.048775,
+      "hi": 0.058208,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 13066,
+      "events": 279,
+      "p": 0.021353,
+      "lo": 0.019012,
+      "hi": 0.023976,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "50-54",
+     "exposed": {
+      "n": 9973,
+      "events": 833,
+      "p": 0.083526,
+      "lo": 0.078254,
+      "hi": 0.089117,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 15409,
+      "events": 550,
+      "p": 0.035693,
+      "lo": 0.032878,
+      "hi": 0.03874,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "55-59",
+     "exposed": {
+      "n": 12672,
+      "events": 1367,
+      "p": 0.107876,
+      "lo": 0.102593,
+      "hi": 0.113396,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17085,
+      "events": 835,
+      "p": 0.048873,
+      "lo": 0.045741,
+      "hi": 0.052209,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "60-64",
+     "exposed": {
+      "n": 15436,
+      "events": 2039,
+      "p": 0.132094,
+      "lo": 0.126844,
+      "hi": 0.137527,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 18250,
+      "events": 1288,
+      "p": 0.070575,
+      "lo": 0.066949,
+      "hi": 0.074382,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "65-69",
+     "exposed": {
+      "n": 15563,
+      "events": 2455,
+      "p": 0.157746,
+      "lo": 0.152104,
+      "hi": 0.163557,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 18588,
+      "events": 1646,
+      "p": 0.088552,
+      "lo": 0.084552,
+      "hi": 0.092721,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "70-74",
+     "exposed": {
+      "n": 14925,
+      "events": 2970,
+      "p": 0.198995,
+      "lo": 0.192668,
+      "hi": 0.205477,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 16140,
+      "events": 1877,
+      "p": 0.116295,
+      "lo": 0.11144,
+      "hi": 0.121332,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "75-79",
+     "exposed": {
+      "n": 10754,
+      "events": 2426,
+      "p": 0.22559,
+      "lo": 0.21779,
+      "hi": 0.233587,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 10728,
+      "events": 1623,
+      "p": 0.151286,
+      "lo": 0.144631,
+      "hi": 0.158192,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "80 or older",
+     "exposed": {
+      "n": 10527,
+      "events": 2757,
+      "p": 0.261898,
+      "lo": 0.253587,
+      "hi": 0.270383,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 13626,
+      "events": 2692,
+      "p": 0.197563,
+      "lo": 0.190964,
+      "hi": 0.204334,
+      "small_n": false,
+      "suppressed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "inactivity",
+   "label": "Physical inactivity",
+   "exposed_label": "No physical activity",
+   "unexposed_label": "Physically active",
+   "rows": [
+    {
+     "age": "18-24",
+     "exposed": {
+      "n": 3002,
+      "events": 25,
+      "p": 0.008328,
+      "lo": 0.005647,
+      "hi": 0.012265,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 18062,
+      "events": 105,
+      "p": 0.005813,
+      "lo": 0.004805,
+      "hi": 0.007032,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "25-29",
+     "exposed": {
+      "n": 2617,
+      "events": 32,
+      "p": 0.012228,
+      "lo": 0.008675,
+      "hi": 0.017211,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 14338,
+      "events": 101,
+      "p": 0.007044,
+      "lo": 0.005801,
+      "hi": 0.008551,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "30-34",
+     "exposed": {
+      "n": 2995,
+      "events": 52,
+      "p": 0.017362,
+      "lo": 0.013265,
+      "hi": 0.022696,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 15758,
+      "events": 174,
+      "p": 0.011042,
+      "lo": 0.009525,
+      "hi": 0.012797,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "35-39",
+     "exposed": {
+      "n": 3590,
+      "events": 77,
+      "p": 0.021448,
+      "lo": 0.017196,
+      "hi": 0.026724,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 16960,
+      "events": 219,
+      "p": 0.012913,
+      "lo": 0.011321,
+      "hi": 0.014726,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "40-44",
+     "exposed": {
+      "n": 3940,
+      "events": 140,
+      "p": 0.035533,
+      "lo": 0.03019,
+      "hi": 0.041781,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17066,
+      "events": 346,
+      "p": 0.020274,
+      "lo": 0.018265,
+      "hi": 0.022499,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "45-49",
+     "exposed": {
+      "n": 4502,
+      "events": 277,
+      "p": 0.061528,
+      "lo": 0.054876,
+      "hi": 0.068928,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17289,
+      "events": 467,
+      "p": 0.027011,
+      "lo": 0.024698,
+      "hi": 0.029535,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "50-54",
+     "exposed": {
+      "n": 5638,
+      "events": 566,
+      "p": 0.10039,
+      "lo": 0.092816,
+      "hi": 0.108509,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 19744,
+      "events": 817,
+      "p": 0.04138,
+      "lo": 0.03869,
+      "hi": 0.044248,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "55-59",
+     "exposed": {
+      "n": 6785,
+      "events": 846,
+      "p": 0.124687,
+      "lo": 0.117038,
+      "hi": 0.132761,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 22972,
+      "events": 1356,
+      "p": 0.059028,
+      "lo": 0.056054,
+      "hi": 0.06215,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "60-64",
+     "exposed": {
+      "n": 8111,
+      "events": 1187,
+      "p": 0.146344,
+      "lo": 0.13882,
+      "hi": 0.154204,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 25575,
+      "events": 2140,
+      "p": 0.083675,
+      "lo": 0.080344,
+      "hi": 0.087132,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "65-69",
+     "exposed": {
+      "n": 8043,
+      "events": 1379,
+      "p": 0.171453,
+      "lo": 0.163374,
+      "hi": 0.179847,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 26108,
+      "events": 2722,
+      "p": 0.104259,
+      "lo": 0.10061,
+      "hi": 0.108025,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "70-74",
+     "exposed": {
+      "n": 7813,
+      "events": 1646,
+      "p": 0.210675,
+      "lo": 0.201776,
+      "hi": 0.219858,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 23252,
+      "events": 3201,
+      "p": 0.137666,
+      "lo": 0.133297,
+      "hi": 0.142154,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "75-79",
+     "exposed": {
+      "n": 6113,
+      "events": 1473,
+      "p": 0.240962,
+      "lo": 0.230406,
+      "hi": 0.251843,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 15369,
+      "events": 2576,
+      "p": 0.16761,
+      "lo": 0.161788,
+      "hi": 0.173598,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "80 or older",
+     "exposed": {
+      "n": 8689,
+      "events": 2184,
+      "p": 0.251352,
+      "lo": 0.242342,
+      "hi": 0.260582,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 15464,
+      "events": 3265,
+      "p": 0.211136,
+      "lo": 0.204775,
+      "hi": 0.217639,
+      "small_n": false,
+      "suppressed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "obesity",
+   "label": "Obesity",
+   "exposed_label": "Obese",
+   "unexposed_label": "Normal weight",
+   "rows": [
+    {
+     "age": "18-24",
+     "exposed": {
+      "n": 4058,
+      "events": 29,
+      "p": 0.007146,
+      "lo": 0.00498,
+      "hi": 0.010245,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 10419,
+      "events": 61,
+      "p": 0.005855,
+      "lo": 0.004561,
+      "hi": 0.007513,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "25-29",
+     "exposed": {
+      "n": 4871,
+      "events": 42,
+      "p": 0.008622,
+      "lo": 0.006386,
+      "hi": 0.011634,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 6419,
+      "events": 47,
+      "p": 0.007322,
+      "lo": 0.005511,
+      "hi": 0.009722,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "30-34",
+     "exposed": {
+      "n": 6020,
+      "events": 92,
+      "p": 0.015282,
+      "lo": 0.012478,
+      "hi": 0.018705,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 6079,
+      "events": 57,
+      "p": 0.009377,
+      "lo": 0.007245,
+      "hi": 0.012128,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "35-39",
+     "exposed": {
+      "n": 7111,
+      "events": 129,
+      "p": 0.018141,
+      "lo": 0.015289,
+      "hi": 0.021513,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 6068,
+      "events": 79,
+      "p": 0.013019,
+      "lo": 0.010459,
+      "hi": 0.016195,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "40-44",
+     "exposed": {
+      "n": 7760,
+      "events": 261,
+      "p": 0.033634,
+      "lo": 0.029848,
+      "hi": 0.037882,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 5731,
+      "events": 80,
+      "p": 0.013959,
+      "lo": 0.011231,
+      "hi": 0.017339,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "45-49",
+     "exposed": {
+      "n": 8435,
+      "events": 410,
+      "p": 0.048607,
+      "lo": 0.04422,
+      "hi": 0.053405,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 5491,
+      "events": 109,
+      "p": 0.019851,
+      "lo": 0.016483,
+      "hi": 0.02389,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "50-54",
+     "exposed": {
+      "n": 9854,
+      "events": 715,
+      "p": 0.072559,
+      "lo": 0.067602,
+      "hi": 0.07785,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 6138,
+      "events": 237,
+      "p": 0.038612,
+      "lo": 0.034073,
+      "hi": 0.043728,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "55-59",
+     "exposed": {
+      "n": 10930,
+      "events": 1093,
+      "p": 0.1,
+      "lo": 0.094516,
+      "hi": 0.105765,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 7564,
+      "events": 378,
+      "p": 0.049974,
+      "lo": 0.045288,
+      "hi": 0.055116,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "60-64",
+     "exposed": {
+      "n": 11918,
+      "events": 1548,
+      "p": 0.129888,
+      "lo": 0.123971,
+      "hi": 0.136043,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 8920,
+      "events": 599,
+      "p": 0.067152,
+      "lo": 0.062143,
+      "hi": 0.072535,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "65-69",
+     "exposed": {
+      "n": 11722,
+      "events": 1822,
+      "p": 0.155434,
+      "lo": 0.148988,
+      "hi": 0.162106,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9174,
+      "events": 737,
+      "p": 0.080336,
+      "lo": 0.074948,
+      "hi": 0.086075,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "70-74",
+     "exposed": {
+      "n": 9761,
+      "events": 1929,
+      "p": 0.197623,
+      "lo": 0.189843,
+      "hi": 0.205641,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 8775,
+      "events": 1023,
+      "p": 0.116581,
+      "lo": 0.110034,
+      "hi": 0.123464,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "75-79",
+     "exposed": {
+      "n": 5947,
+      "events": 1389,
+      "p": 0.233563,
+      "lo": 0.222984,
+      "hi": 0.244486,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 6732,
+      "events": 990,
+      "p": 0.147059,
+      "lo": 0.1388,
+      "hi": 0.15572,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "80 or older",
+     "exposed": {
+      "n": 4455,
+      "events": 1213,
+      "p": 0.272278,
+      "lo": 0.259408,
+      "hi": 0.285542,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9821,
+      "events": 1912,
+      "p": 0.194685,
+      "lo": 0.186974,
+      "hi": 0.202635,
+      "small_n": false,
+      "suppressed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "short_sleep",
+   "label": "Short sleep",
+   "exposed_label": "Under 6h",
+   "unexposed_label": "6-7h",
+   "rows": [
+    {
+     "age": "18-24",
+     "exposed": {
+      "n": 1841,
+      "events": 23,
+      "p": 0.012493,
+      "lo": 0.008339,
+      "hi": 0.018677,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 10393,
+      "events": 45,
+      "p": 0.00433,
+      "lo": 0.003238,
+      "hi": 0.005788,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "25-29",
+     "exposed": {
+      "n": 1718,
+      "events": 33,
+      "p": 0.019208,
+      "lo": 0.01371,
+      "hi": 0.026852,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9258,
+      "events": 55,
+      "p": 0.005941,
+      "lo": 0.004567,
+      "hi": 0.007724,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "30-34",
+     "exposed": {
+      "n": 2182,
+      "events": 50,
+      "p": 0.022915,
+      "lo": 0.017425,
+      "hi": 0.030082,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 10594,
+      "events": 111,
+      "p": 0.010478,
+      "lo": 0.008708,
+      "hi": 0.012602,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "35-39",
+     "exposed": {
+      "n": 2413,
+      "events": 86,
+      "p": 0.03564,
+      "lo": 0.02895,
+      "hi": 0.043806,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11769,
+      "events": 125,
+      "p": 0.010621,
+      "lo": 0.008922,
+      "hi": 0.012639,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "40-44",
+     "exposed": {
+      "n": 2424,
+      "events": 147,
+      "p": 0.060644,
+      "lo": 0.051819,
+      "hi": 0.070858,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11947,
+      "events": 217,
+      "p": 0.018164,
+      "lo": 0.015919,
+      "hi": 0.020718,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "45-49",
+     "exposed": {
+      "n": 2393,
+      "events": 190,
+      "p": 0.079398,
+      "lo": 0.069228,
+      "hi": 0.090917,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 12337,
+      "events": 334,
+      "p": 0.027073,
+      "lo": 0.024353,
+      "hi": 0.030087,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "50-54",
+     "exposed": {
+      "n": 2868,
+      "events": 332,
+      "p": 0.11576,
+      "lo": 0.104562,
+      "hi": 0.127987,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 14115,
+      "events": 605,
+      "p": 0.042862,
+      "lo": 0.039643,
+      "hi": 0.04633,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "55-59",
+     "exposed": {
+      "n": 3187,
+      "events": 422,
+      "p": 0.132413,
+      "lo": 0.121087,
+      "hi": 0.144624,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 16345,
+      "events": 1074,
+      "p": 0.065708,
+      "lo": 0.062011,
+      "hi": 0.06961,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "60-64",
+     "exposed": {
+      "n": 3299,
+      "events": 570,
+      "p": 0.17278,
+      "lo": 0.160261,
+      "hi": 0.186059,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17750,
+      "events": 1538,
+      "p": 0.086648,
+      "lo": 0.082598,
+      "hi": 0.090876,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "65-69",
+     "exposed": {
+      "n": 2739,
+      "events": 548,
+      "p": 0.200073,
+      "lo": 0.185516,
+      "hi": 0.215471,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 16716,
+      "events": 1884,
+      "p": 0.112706,
+      "lo": 0.108001,
+      "hi": 0.11759,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "70-74",
+     "exposed": {
+      "n": 2231,
+      "events": 507,
+      "p": 0.227252,
+      "lo": 0.210341,
+      "hi": 0.245101,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 14391,
+      "events": 2116,
+      "p": 0.147036,
+      "lo": 0.141345,
+      "hi": 0.152917,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "75-79",
+     "exposed": {
+      "n": 1408,
+      "events": 373,
+      "p": 0.264915,
+      "lo": 0.242527,
+      "hi": 0.288582,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9470,
+      "events": 1647,
+      "p": 0.173918,
+      "lo": 0.166416,
+      "hi": 0.181684,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "80 or older",
+     "exposed": {
+      "n": 1562,
+      "events": 464,
+      "p": 0.297055,
+      "lo": 0.274914,
+      "hi": 0.320192,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9387,
+      "events": 2001,
+      "p": 0.213167,
+      "lo": 0.205,
+      "hi": 0.221568,
+      "small_n": false,
+      "suppressed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "sex",
+   "label": "Sex",
+   "exposed_label": "Male",
+   "unexposed_label": "Female",
+   "rows": [
+    {
+     "age": "18-24",
+     "exposed": {
+      "n": 11630,
+      "events": 80,
+      "p": 0.006879,
+      "lo": 0.005531,
+      "hi": 0.008552,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9434,
+      "events": 50,
+      "p": 0.0053,
+      "lo": 0.004023,
+      "hi": 0.00698,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "25-29",
+     "exposed": {
+      "n": 8999,
+      "events": 67,
+      "p": 0.007445,
+      "lo": 0.005867,
+      "hi": 0.009444,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 7956,
+      "events": 66,
+      "p": 0.008296,
+      "lo": 0.006526,
+      "hi": 0.01054,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "30-34",
+     "exposed": {
+      "n": 9623,
+      "events": 127,
+      "p": 0.013198,
+      "lo": 0.011104,
+      "hi": 0.01568,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 9130,
+      "events": 99,
+      "p": 0.010843,
+      "lo": 0.008915,
+      "hi": 0.013183,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "35-39",
+     "exposed": {
+      "n": 10092,
+      "events": 148,
+      "p": 0.014665,
+      "lo": 0.012498,
+      "hi": 0.017202,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 10458,
+      "events": 148,
+      "p": 0.014152,
+      "lo": 0.01206,
+      "hi": 0.016601,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "40-44",
+     "exposed": {
+      "n": 10054,
+      "events": 243,
+      "p": 0.024169,
+      "lo": 0.021344,
+      "hi": 0.027358,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 10952,
+      "events": 243,
+      "p": 0.022188,
+      "lo": 0.019592,
+      "hi": 0.025118,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "45-49",
+     "exposed": {
+      "n": 10353,
+      "events": 424,
+      "p": 0.040954,
+      "lo": 0.037304,
+      "hi": 0.044945,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 11438,
+      "events": 320,
+      "p": 0.027977,
+      "lo": 0.02511,
+      "hi": 0.031161,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "50-54",
+     "exposed": {
+      "n": 12047,
+      "events": 787,
+      "p": 0.065327,
+      "lo": 0.061052,
+      "hi": 0.06988,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 13335,
+      "events": 596,
+      "p": 0.044694,
+      "lo": 0.041316,
+      "hi": 0.048335,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "55-59",
+     "exposed": {
+      "n": 14270,
+      "events": 1294,
+      "p": 0.09068,
+      "lo": 0.086078,
+      "hi": 0.095502,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 15487,
+      "events": 908,
+      "p": 0.05863,
+      "lo": 0.055038,
+      "hi": 0.06244,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "60-64",
+     "exposed": {
+      "n": 16114,
+      "events": 2070,
+      "p": 0.12846,
+      "lo": 0.123382,
+      "hi": 0.133715,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17572,
+      "events": 1257,
+      "p": 0.071534,
+      "lo": 0.067817,
+      "hi": 0.075439,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "65-69",
+     "exposed": {
+      "n": 16103,
+      "events": 2634,
+      "p": 0.163572,
+      "lo": 0.157939,
+      "hi": 0.169365,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 18048,
+      "events": 1467,
+      "p": 0.081283,
+      "lo": 0.077385,
+      "hi": 0.08536,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "70-74",
+     "exposed": {
+      "n": 13976,
+      "events": 3037,
+      "p": 0.217301,
+      "lo": 0.210542,
+      "hi": 0.224216,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17089,
+      "events": 1810,
+      "p": 0.105916,
+      "lo": 0.101391,
+      "hi": 0.110619,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "75-79",
+     "exposed": {
+      "n": 9292,
+      "events": 2407,
+      "p": 0.25904,
+      "lo": 0.250233,
+      "hi": 0.268046,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 12190,
+      "events": 1642,
+      "p": 0.134701,
+      "lo": 0.128755,
+      "hi": 0.140876,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "80 or older",
+     "exposed": {
+      "n": 9437,
+      "events": 2821,
+      "p": 0.29893,
+      "lo": 0.289777,
+      "hi": 0.308246,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 14716,
+      "events": 2628,
+      "p": 0.178581,
+      "lo": 0.172477,
+      "hi": 0.184853,
+      "small_n": false,
+      "suppressed": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "diabetes",
+   "label": "Diabetes",
+   "exposed_label": "Diabetic",
+   "unexposed_label": "Non-diabetic",
+   "rows": [
+    {
+     "age": "18-24",
+     "exposed": {
+      "n": 233,
+      "events": 10,
+      "p": 0.042918,
+      "lo": 0.023477,
+      "hi": 0.077187,
+      "small_n": true,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 20560,
+      "events": 114,
+      "p": 0.005545,
+      "lo": 0.004618,
+      "hi": 0.006656,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "25-29",
+     "exposed": {
+      "n": 251,
+      "events": 3,
+      "p": 0.011952,
+      "lo": 0.004073,
+      "hi": 0.034545,
+      "small_n": true,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 16385,
+      "events": 128,
+      "p": 0.007812,
+      "lo": 0.006575,
+      "hi": 0.00928,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "30-34",
+     "exposed": {
+      "n": 474,
+      "events": 16,
+      "p": 0.033755,
+      "lo": 0.020883,
+      "hi": 0.054124,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 17769,
+      "events": 205,
+      "p": 0.011537,
+      "lo": 0.010069,
+      "hi": 0.013216,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "35-39",
+     "exposed": {
+      "n": 831,
+      "events": 41,
+      "p": 0.049338,
+      "lo": 0.036575,
+      "hi": 0.066248,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 19080,
+      "events": 241,
+      "p": 0.012631,
+      "lo": 0.011142,
+      "hi": 0.014317,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "40-44",
+     "exposed": {
+      "n": 1303,
+      "events": 111,
+      "p": 0.085188,
+      "lo": 0.071223,
+      "hi": 0.101592,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 19053,
+      "events": 360,
+      "p": 0.018895,
+      "lo": 0.017056,
+      "hi": 0.020927,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "45-49",
+     "exposed": {
+      "n": 2019,
+      "events": 233,
+      "p": 0.115404,
+      "lo": 0.102191,
+      "hi": 0.130077,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 19122,
+      "events": 483,
+      "p": 0.025259,
+      "lo": 0.023128,
+      "hi": 0.02758,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "50-54",
+     "exposed": {
+      "n": 3072,
+      "events": 436,
+      "p": 0.141927,
+      "lo": 0.130033,
+      "hi": 0.154715,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 21552,
+      "events": 893,
+      "p": 0.041435,
+      "lo": 0.038855,
+      "hi": 0.044178,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "55-59",
+     "exposed": {
+      "n": 4417,
+      "events": 774,
+      "p": 0.175232,
+      "lo": 0.164304,
+      "hi": 0.186724,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 24416,
+      "events": 1342,
+      "p": 0.054964,
+      "lo": 0.052175,
+      "hi": 0.057893,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "60-64",
+     "exposed": {
+      "n": 5672,
+      "events": 1199,
+      "p": 0.211389,
+      "lo": 0.200961,
+      "hi": 0.222208,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 26939,
+      "events": 2015,
+      "p": 0.074799,
+      "lo": 0.071717,
+      "hi": 0.078001,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "65-69",
+     "exposed": {
+      "n": 6550,
+      "events": 1466,
+      "p": 0.223817,
+      "lo": 0.213887,
+      "hi": 0.234071,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 26556,
+      "events": 2515,
+      "p": 0.094706,
+      "lo": 0.091242,
+      "hi": 0.098286,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "70-74",
+     "exposed": {
+      "n": 6761,
+      "events": 1778,
+      "p": 0.262979,
+      "lo": 0.252622,
+      "hi": 0.273605,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 23269,
+      "events": 2891,
+      "p": 0.124243,
+      "lo": 0.120066,
+      "hi": 0.128543,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "75-79",
+     "exposed": {
+      "n": 4791,
+      "events": 1425,
+      "p": 0.297433,
+      "lo": 0.284655,
+      "hi": 0.310535,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 16024,
+      "events": 2508,
+      "p": 0.156515,
+      "lo": 0.150972,
+      "hi": 0.162223,
+      "small_n": false,
+      "suppressed": false
+     }
+    },
+    {
+     "age": "80 or older",
+     "exposed": {
+      "n": 4428,
+      "events": 1465,
+      "p": 0.330849,
+      "lo": 0.317142,
+      "hi": 0.344849,
+      "small_n": false,
+      "suppressed": false
+     },
+     "unexposed": {
+      "n": 18928,
+      "events": 3824,
+      "p": 0.202029,
+      "lo": 0.196369,
+      "hi": 0.207809,
+      "small_n": false,
+      "suppressed": false
+     }
+    }
+   ]
+  }
+ ]
+}

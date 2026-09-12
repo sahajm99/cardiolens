@@ -1,8 +1,4 @@
-"""Shared constants: paths, category orders, band edges, and reference levels.
-
-`FACTORS` is a placeholder here; Task 2 populates it with the factor definitions
-used by the aggregate writers.
-"""
+"""Shared constants: paths, category orders, band edges, reference levels, and factor definitions."""
 
 from __future__ import annotations
 
@@ -87,8 +83,125 @@ REFERENCE = {
     **{c: "No" for c in BINARY_COLS},
 }
 
-# Populated in Task 2.
-FACTORS: list[dict] = []
+FACTORS: list[dict] = [
+    {
+        "id": "smoking",
+        "column": "Smoking",
+        "label": "Smoking",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Smoker",
+        "unexposed_label": "Non-smoker",
+    },
+    {
+        "id": "alcohol",
+        "column": "AlcoholDrinking",
+        "label": "Alcohol drinking",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Drinker",
+        "unexposed_label": "Non-drinker",
+    },
+    {
+        "id": "stroke",
+        "column": "Stroke",
+        "label": "Stroke history",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "History of stroke",
+        "unexposed_label": "No history of stroke",
+    },
+    {
+        "id": "diabetes",
+        "column": "Diabetic",
+        "label": "Diabetes",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Diabetic",
+        "unexposed_label": "Non-diabetic",
+    },
+    {
+        "id": "diff_walking",
+        "column": "DiffWalking",
+        "label": "Difficulty walking",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Difficulty walking",
+        "unexposed_label": "No difficulty walking",
+    },
+    {
+        "id": "kidney",
+        "column": "KidneyDisease",
+        "label": "Kidney disease",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Kidney disease",
+        "unexposed_label": "No kidney disease",
+    },
+    {
+        "id": "asthma",
+        "column": "Asthma",
+        "label": "Asthma",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Asthma",
+        "unexposed_label": "No asthma",
+    },
+    {
+        "id": "skin_cancer",
+        "column": "SkinCancer",
+        "label": "Skin cancer",
+        "exposed": ["Yes"],
+        "unexposed": ["No"],
+        "exposed_label": "Skin cancer",
+        "unexposed_label": "No skin cancer",
+    },
+    {
+        "id": "inactivity",
+        "column": "PhysicalActivity",
+        "label": "Physical inactivity",
+        "exposed": ["No"],
+        "unexposed": ["Yes"],
+        "exposed_label": "No physical activity",
+        "unexposed_label": "Physically active",
+    },
+    {
+        "id": "sex",
+        "column": "Sex",
+        "label": "Sex",
+        "exposed": ["Male"],
+        "unexposed": ["Female"],
+        "exposed_label": "Male",
+        "unexposed_label": "Female",
+    },
+    {
+        "id": "obesity",
+        "column": "BMIClass",
+        "label": "Obesity",
+        "exposed": ["Obese I", "Obese II+"],
+        "unexposed": ["Normal"],
+        "exposed_label": "Obese",
+        "unexposed_label": "Normal weight",
+    },
+    {
+        "id": "short_sleep",
+        "column": "SleepBand",
+        "label": "Short sleep",
+        "exposed": ["Under 6h"],
+        "unexposed": ["6-7h"],
+        "exposed_label": "Under 6h",
+        "unexposed_label": "6-7h",
+    },
+    {
+        "id": "poor_health",
+        "column": "GenHealth",
+        "label": "General health",
+        "exposed": ["Fair", "Poor"],
+        "unexposed": ["Excellent", "Very good"],
+        "exposed_label": "Fair or poor health",
+        "unexposed_label": "Excellent or very good health",
+    },
+]
 
 SUPPRESS_N = 30
 SMALL_N = 300

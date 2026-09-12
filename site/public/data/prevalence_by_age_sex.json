@@ -1,0 +1,377 @@
+{
+ "schema": "prevalence.v1",
+ "id": "prevalence_by_age_sex",
+ "generated_at": "2026-09-12T13:51:00.517257+00:00",
+ "outcome": "HeartDisease",
+ "group_by": [
+  "AgeCategory",
+  "Sex"
+ ],
+ "levels": {
+  "AgeCategory": [
+   "18-24",
+   "25-29",
+   "30-34",
+   "35-39",
+   "40-44",
+   "45-49",
+   "50-54",
+   "55-59",
+   "60-64",
+   "65-69",
+   "70-74",
+   "75-79",
+   "80 or older"
+  ],
+  "Sex": [
+   "Female",
+   "Male"
+  ]
+ },
+ "ci": {
+  "method": "wilson",
+  "level": 0.95
+ },
+ "n_total": 319795,
+ "events_total": 27373,
+ "rows": [
+  {
+   "key": [
+    "18-24",
+    "Female"
+   ],
+   "n": 9434,
+   "events": 50,
+   "p": 0.0053,
+   "lo": 0.004023,
+   "hi": 0.00698,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "18-24",
+    "Male"
+   ],
+   "n": 11630,
+   "events": 80,
+   "p": 0.006879,
+   "lo": 0.005531,
+   "hi": 0.008552,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "25-29",
+    "Female"
+   ],
+   "n": 7956,
+   "events": 66,
+   "p": 0.008296,
+   "lo": 0.006526,
+   "hi": 0.01054,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "25-29",
+    "Male"
+   ],
+   "n": 8999,
+   "events": 67,
+   "p": 0.007445,
+   "lo": 0.005867,
+   "hi": 0.009444,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "30-34",
+    "Female"
+   ],
+   "n": 9130,
+   "events": 99,
+   "p": 0.010843,
+   "lo": 0.008915,
+   "hi": 0.013183,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "30-34",
+    "Male"
+   ],
+   "n": 9623,
+   "events": 127,
+   "p": 0.013198,
+   "lo": 0.011104,
+   "hi": 0.01568,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "35-39",
+    "Female"
+   ],
+   "n": 10458,
+   "events": 148,
+   "p": 0.014152,
+   "lo": 0.01206,
+   "hi": 0.016601,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "35-39",
+    "Male"
+   ],
+   "n": 10092,
+   "events": 148,
+   "p": 0.014665,
+   "lo": 0.012498,
+   "hi": 0.017202,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "40-44",
+    "Female"
+   ],
+   "n": 10952,
+   "events": 243,
+   "p": 0.022188,
+   "lo": 0.019592,
+   "hi": 0.025118,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "40-44",
+    "Male"
+   ],
+   "n": 10054,
+   "events": 243,
+   "p": 0.024169,
+   "lo": 0.021344,
+   "hi": 0.027358,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "45-49",
+    "Female"
+   ],
+   "n": 11438,
+   "events": 320,
+   "p": 0.027977,
+   "lo": 0.02511,
+   "hi": 0.031161,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "45-49",
+    "Male"
+   ],
+   "n": 10353,
+   "events": 424,
+   "p": 0.040954,
+   "lo": 0.037304,
+   "hi": 0.044945,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "50-54",
+    "Female"
+   ],
+   "n": 13335,
+   "events": 596,
+   "p": 0.044694,
+   "lo": 0.041316,
+   "hi": 0.048335,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "50-54",
+    "Male"
+   ],
+   "n": 12047,
+   "events": 787,
+   "p": 0.065327,
+   "lo": 0.061052,
+   "hi": 0.06988,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "55-59",
+    "Female"
+   ],
+   "n": 15487,
+   "events": 908,
+   "p": 0.05863,
+   "lo": 0.055038,
+   "hi": 0.06244,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "55-59",
+    "Male"
+   ],
+   "n": 14270,
+   "events": 1294,
+   "p": 0.09068,
+   "lo": 0.086078,
+   "hi": 0.095502,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "60-64",
+    "Female"
+   ],
+   "n": 17572,
+   "events": 1257,
+   "p": 0.071534,
+   "lo": 0.067817,
+   "hi": 0.075439,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "60-64",
+    "Male"
+   ],
+   "n": 16114,
+   "events": 2070,
+   "p": 0.12846,
+   "lo": 0.123382,
+   "hi": 0.133715,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "65-69",
+    "Female"
+   ],
+   "n": 18048,
+   "events": 1467,
+   "p": 0.081283,
+   "lo": 0.077385,
+   "hi": 0.08536,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "65-69",
+    "Male"
+   ],
+   "n": 16103,
+   "events": 2634,
+   "p": 0.163572,
+   "lo": 0.157939,
+   "hi": 0.169365,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "70-74",
+    "Female"
+   ],
+   "n": 17089,
+   "events": 1810,
+   "p": 0.105916,
+   "lo": 0.101391,
+   "hi": 0.110619,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "70-74",
+    "Male"
+   ],
+   "n": 13976,
+   "events": 3037,
+   "p": 0.217301,
+   "lo": 0.210542,
+   "hi": 0.224216,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "75-79",
+    "Female"
+   ],
+   "n": 12190,
+   "events": 1642,
+   "p": 0.134701,
+   "lo": 0.128755,
+   "hi": 0.140876,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "75-79",
+    "Male"
+   ],
+   "n": 9292,
+   "events": 2407,
+   "p": 0.25904,
+   "lo": 0.250233,
+   "hi": 0.268046,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "80 or older",
+    "Female"
+   ],
+   "n": 14716,
+   "events": 2628,
+   "p": 0.178581,
+   "lo": 0.172477,
+   "hi": 0.184853,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "80 or older",
+    "Male"
+   ],
+   "n": 9437,
+   "events": 2821,
+   "p": 0.29893,
+   "lo": 0.289777,
+   "hi": 0.308246,
+   "small_n": false,
+   "suppressed": false
+  }
+ ]
+}

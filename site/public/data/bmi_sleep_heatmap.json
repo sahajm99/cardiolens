@@ -1,0 +1,1160 @@
+{
+ "schema": "prevalence.v1",
+ "id": "bmi_sleep_heatmap",
+ "generated_at": "2026-09-12T13:51:01.062265+00:00",
+ "outcome": "HeartDisease",
+ "group_by": [
+  "MentalBand",
+  "BMIClass",
+  "SleepBand"
+ ],
+ "levels": {
+  "MentalBand": [
+   "All",
+   "0 days",
+   "1-13 days",
+   "14 or more days"
+  ],
+  "BMIClass": [
+   "Underweight",
+   "Normal",
+   "Overweight",
+   "Obese I",
+   "Obese II+"
+  ],
+  "SleepBand": [
+   "Under 6h",
+   "6-7h",
+   "8-9h",
+   "10h or more"
+  ]
+ },
+ "ci": {
+  "method": "wilson",
+  "level": 0.95
+ },
+ "n_total": 319795,
+ "events_total": 27373,
+ "rows": [
+  {
+   "key": [
+    "All",
+    "Underweight",
+    "Under 6h"
+   ],
+   "n": 659,
+   "events": 81,
+   "p": 0.122914,
+   "lo": 0.100008,
+   "hi": 0.15019,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Underweight",
+    "6-7h"
+   ],
+   "n": 2304,
+   "events": 143,
+   "p": 0.062066,
+   "lo": 0.052924,
+   "hi": 0.072666,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Underweight",
+    "8-9h"
+   ],
+   "n": 1860,
+   "events": 136,
+   "p": 0.073118,
+   "lo": 0.062147,
+   "hi": 0.085849,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Underweight",
+    "10h or more"
+   ],
+   "n": 287,
+   "events": 41,
+   "p": 0.142857,
+   "lo": 0.107083,
+   "hi": 0.188066,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Normal",
+    "Under 6h"
+   ],
+   "n": 7722,
+   "events": 778,
+   "p": 0.100751,
+   "lo": 0.094235,
+   "hi": 0.107664,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Normal",
+    "6-7h"
+   ],
+   "n": 49323,
+   "events": 2615,
+   "p": 0.053018,
+   "lo": 0.051075,
+   "hi": 0.05503,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Normal",
+    "8-9h"
+   ],
+   "n": 37061,
+   "events": 2492,
+   "p": 0.06724,
+   "lo": 0.064735,
+   "hi": 0.069835,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Normal",
+    "10h or more"
+   ],
+   "n": 3225,
+   "events": 424,
+   "p": 0.131473,
+   "lo": 0.120247,
+   "hi": 0.143575,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Overweight",
+    "Under 6h"
+   ],
+   "n": 9744,
+   "events": 1193,
+   "p": 0.122434,
+   "lo": 0.116074,
+   "hi": 0.129092,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Overweight",
+    "6-7h"
+   ],
+   "n": 59862,
+   "events": 4374,
+   "p": 0.073068,
+   "lo": 0.071011,
+   "hi": 0.07518,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Overweight",
+    "8-9h"
+   ],
+   "n": 41251,
+   "events": 3838,
+   "p": 0.09304,
+   "lo": 0.090275,
+   "hi": 0.095881,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Overweight",
+    "10h or more"
+   ],
+   "n": 3655,
+   "events": 586,
+   "p": 0.160328,
+   "lo": 0.148791,
+   "hi": 0.172579,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese I",
+    "Under 6h"
+   ],
+   "n": 6402,
+   "events": 882,
+   "p": 0.137769,
+   "lo": 0.129544,
+   "hi": 0.14643,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese I",
+    "6-7h"
+   ],
+   "n": 31978,
+   "events": 2689,
+   "p": 0.084089,
+   "lo": 0.081097,
+   "hi": 0.087181,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese I",
+    "8-9h"
+   ],
+   "n": 20656,
+   "events": 2157,
+   "p": 0.104425,
+   "lo": 0.100328,
+   "hi": 0.108669,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese I",
+    "10h or more"
+   ],
+   "n": 2309,
+   "events": 432,
+   "p": 0.187094,
+   "lo": 0.171711,
+   "hi": 0.203516,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese II+",
+    "Under 6h"
+   ],
+   "n": 5738,
+   "events": 811,
+   "p": 0.141338,
+   "lo": 0.132564,
+   "hi": 0.150592,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese II+",
+    "6-7h"
+   ],
+   "n": 21005,
+   "events": 1931,
+   "p": 0.09193,
+   "lo": 0.088097,
+   "hi": 0.095913,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese II+",
+    "8-9h"
+   ],
+   "n": 12815,
+   "events": 1431,
+   "p": 0.111666,
+   "lo": 0.106329,
+   "hi": 0.117236,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "All",
+    "Obese II+",
+    "10h or more"
+   ],
+   "n": 1939,
+   "events": 339,
+   "p": 0.174832,
+   "lo": 0.158574,
+   "hi": 0.192377,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Underweight",
+    "Under 6h"
+   ],
+   "n": 250,
+   "events": 31,
+   "p": 0.124,
+   "lo": 0.088748,
+   "hi": 0.170632,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Underweight",
+    "6-7h"
+   ],
+   "n": 1274,
+   "events": 74,
+   "p": 0.058085,
+   "lo": 0.04652,
+   "hi": 0.072307,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Underweight",
+    "8-9h"
+   ],
+   "n": 1199,
+   "events": 92,
+   "p": 0.076731,
+   "lo": 0.06298,
+   "hi": 0.093185,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Underweight",
+    "10h or more"
+   ],
+   "n": 167,
+   "events": 24,
+   "p": 0.143713,
+   "lo": 0.098515,
+   "hi": 0.204933,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Normal",
+    "Under 6h"
+   ],
+   "n": 3625,
+   "events": 359,
+   "p": 0.099034,
+   "lo": 0.089731,
+   "hi": 0.109187,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Normal",
+    "6-7h"
+   ],
+   "n": 30404,
+   "events": 1758,
+   "p": 0.057821,
+   "lo": 0.055253,
+   "hi": 0.060501,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Normal",
+    "8-9h"
+   ],
+   "n": 25505,
+   "events": 1837,
+   "p": 0.072025,
+   "lo": 0.068916,
+   "hi": 0.075263,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Normal",
+    "10h or more"
+   ],
+   "n": 1973,
+   "events": 258,
+   "p": 0.130765,
+   "lo": 0.116604,
+   "hi": 0.146362,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Overweight",
+    "Under 6h"
+   ],
+   "n": 4982,
+   "events": 588,
+   "p": 0.118025,
+   "lo": 0.109359,
+   "hi": 0.12728,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Overweight",
+    "6-7h"
+   ],
+   "n": 39953,
+   "events": 3152,
+   "p": 0.078893,
+   "lo": 0.07629,
+   "hi": 0.081577,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Overweight",
+    "8-9h"
+   ],
+   "n": 30437,
+   "events": 2989,
+   "p": 0.098203,
+   "lo": 0.09491,
+   "hi": 0.101597,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Overweight",
+    "10h or more"
+   ],
+   "n": 2331,
+   "events": 361,
+   "p": 0.154869,
+   "lo": 0.140751,
+   "hi": 0.170122,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese I",
+    "Under 6h"
+   ],
+   "n": 3107,
+   "events": 417,
+   "p": 0.134213,
+   "lo": 0.122677,
+   "hi": 0.146652,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese I",
+    "6-7h"
+   ],
+   "n": 20569,
+   "events": 1825,
+   "p": 0.088726,
+   "lo": 0.084916,
+   "hi": 0.092689,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese I",
+    "8-9h"
+   ],
+   "n": 14809,
+   "events": 1615,
+   "p": 0.109055,
+   "lo": 0.104136,
+   "hi": 0.114177,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese I",
+    "10h or more"
+   ],
+   "n": 1335,
+   "events": 244,
+   "p": 0.182772,
+   "lo": 0.16296,
+   "hi": 0.204404,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese II+",
+    "Under 6h"
+   ],
+   "n": 2353,
+   "events": 315,
+   "p": 0.133872,
+   "lo": 0.120708,
+   "hi": 0.148229,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese II+",
+    "6-7h"
+   ],
+   "n": 11902,
+   "events": 1151,
+   "p": 0.096706,
+   "lo": 0.091526,
+   "hi": 0.102147,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese II+",
+    "8-9h"
+   ],
+   "n": 8270,
+   "events": 948,
+   "p": 0.114631,
+   "lo": 0.107943,
+   "hi": 0.121677,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "0 days",
+    "Obese II+",
+    "10h or more"
+   ],
+   "n": 956,
+   "events": 177,
+   "p": 0.185146,
+   "lo": 0.161802,
+   "hi": 0.211011,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Underweight",
+    "Under 6h"
+   ],
+   "n": 149,
+   "events": 17,
+   "p": 0.114094,
+   "lo": 0.072466,
+   "hi": 0.17512,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Underweight",
+    "6-7h"
+   ],
+   "n": 652,
+   "events": 27,
+   "p": 0.041411,
+   "lo": 0.028614,
+   "hi": 0.05958,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Underweight",
+    "8-9h"
+   ],
+   "n": 446,
+   "events": 22,
+   "p": 0.049327,
+   "lo": 0.032798,
+   "hi": 0.073554,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Underweight",
+    "10h or more"
+   ],
+   "n": 60,
+   "events": 9,
+   "p": 0.15,
+   "lo": 0.080974,
+   "hi": 0.261146,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Normal",
+    "Under 6h"
+   ],
+   "n": 1877,
+   "events": 157,
+   "p": 0.083644,
+   "lo": 0.071954,
+   "hi": 0.097035,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Normal",
+    "6-7h"
+   ],
+   "n": 13578,
+   "events": 502,
+   "p": 0.036972,
+   "lo": 0.033926,
+   "hi": 0.040279,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Normal",
+    "8-9h"
+   ],
+   "n": 8617,
+   "events": 415,
+   "p": 0.048161,
+   "lo": 0.043838,
+   "hi": 0.052886,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Normal",
+    "10h or more"
+   ],
+   "n": 664,
+   "events": 92,
+   "p": 0.138554,
+   "lo": 0.114349,
+   "hi": 0.166918,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Overweight",
+    "Under 6h"
+   ],
+   "n": 2301,
+   "events": 242,
+   "p": 0.105172,
+   "lo": 0.093288,
+   "hi": 0.118371,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Overweight",
+    "6-7h"
+   ],
+   "n": 14360,
+   "events": 741,
+   "p": 0.051602,
+   "lo": 0.048102,
+   "hi": 0.055341,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Overweight",
+    "8-9h"
+   ],
+   "n": 7807,
+   "events": 530,
+   "p": 0.067888,
+   "lo": 0.062518,
+   "hi": 0.073683,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Overweight",
+    "10h or more"
+   ],
+   "n": 685,
+   "events": 108,
+   "p": 0.157664,
+   "lo": 0.132292,
+   "hi": 0.186855,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese I",
+    "Under 6h"
+   ],
+   "n": 1500,
+   "events": 186,
+   "p": 0.124,
+   "lo": 0.108275,
+   "hi": 0.141646,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese I",
+    "6-7h"
+   ],
+   "n": 7842,
+   "events": 510,
+   "p": 0.065034,
+   "lo": 0.059787,
+   "hi": 0.070708,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese I",
+    "8-9h"
+   ],
+   "n": 4020,
+   "events": 323,
+   "p": 0.080348,
+   "lo": 0.07234,
+   "hi": 0.089157,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese I",
+    "10h or more"
+   ],
+   "n": 506,
+   "events": 98,
+   "p": 0.193676,
+   "lo": 0.161604,
+   "hi": 0.230364,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese II+",
+    "Under 6h"
+   ],
+   "n": 1407,
+   "events": 191,
+   "p": 0.13575,
+   "lo": 0.118841,
+   "hi": 0.154642,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese II+",
+    "6-7h"
+   ],
+   "n": 5754,
+   "events": 433,
+   "p": 0.075252,
+   "lo": 0.068716,
+   "hi": 0.082355,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese II+",
+    "8-9h"
+   ],
+   "n": 2929,
+   "events": 264,
+   "p": 0.090133,
+   "lo": 0.080292,
+   "hi": 0.101048,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "1-13 days",
+    "Obese II+",
+    "10h or more"
+   ],
+   "n": 424,
+   "events": 53,
+   "p": 0.125,
+   "lo": 0.096849,
+   "hi": 0.159885,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Underweight",
+    "Under 6h"
+   ],
+   "n": 260,
+   "events": 33,
+   "p": 0.126923,
+   "lo": 0.091822,
+   "hi": 0.172888,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Underweight",
+    "6-7h"
+   ],
+   "n": 378,
+   "events": 42,
+   "p": 0.111111,
+   "lo": 0.08326,
+   "hi": 0.146787,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Underweight",
+    "8-9h"
+   ],
+   "n": 215,
+   "events": 22,
+   "p": 0.102326,
+   "lo": 0.068549,
+   "hi": 0.150063,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Underweight",
+    "10h or more"
+   ],
+   "n": 60,
+   "events": 8,
+   "p": 0.133333,
+   "lo": 0.069141,
+   "hi": 0.241652,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Normal",
+    "Under 6h"
+   ],
+   "n": 2220,
+   "events": 262,
+   "p": 0.118018,
+   "lo": 0.105253,
+   "hi": 0.132103,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Normal",
+    "6-7h"
+   ],
+   "n": 5341,
+   "events": 355,
+   "p": 0.066467,
+   "lo": 0.060093,
+   "hi": 0.073464,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Normal",
+    "8-9h"
+   ],
+   "n": 2939,
+   "events": 240,
+   "p": 0.08166,
+   "lo": 0.072297,
+   "hi": 0.092116,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Normal",
+    "10h or more"
+   ],
+   "n": 588,
+   "events": 74,
+   "p": 0.12585,
+   "lo": 0.101447,
+   "hi": 0.155111,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Overweight",
+    "Under 6h"
+   ],
+   "n": 2461,
+   "events": 363,
+   "p": 0.147501,
+   "lo": 0.134041,
+   "hi": 0.16206,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Overweight",
+    "6-7h"
+   ],
+   "n": 5549,
+   "events": 481,
+   "p": 0.086682,
+   "lo": 0.079562,
+   "hi": 0.094374,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Overweight",
+    "8-9h"
+   ],
+   "n": 3007,
+   "events": 319,
+   "p": 0.106086,
+   "lo": 0.095577,
+   "hi": 0.1176,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Overweight",
+    "10h or more"
+   ],
+   "n": 639,
+   "events": 117,
+   "p": 0.183099,
+   "lo": 0.155036,
+   "hi": 0.214949,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese I",
+    "Under 6h"
+   ],
+   "n": 1795,
+   "events": 279,
+   "p": 0.155432,
+   "lo": 0.139408,
+   "hi": 0.172927,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese I",
+    "6-7h"
+   ],
+   "n": 3567,
+   "events": 354,
+   "p": 0.099243,
+   "lo": 0.089858,
+   "hi": 0.10949,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese I",
+    "8-9h"
+   ],
+   "n": 1827,
+   "events": 219,
+   "p": 0.119869,
+   "lo": 0.105767,
+   "hi": 0.135566,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese I",
+    "10h or more"
+   ],
+   "n": 468,
+   "events": 90,
+   "p": 0.192308,
+   "lo": 0.159164,
+   "hi": 0.230462,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese II+",
+    "Under 6h"
+   ],
+   "n": 1978,
+   "events": 305,
+   "p": 0.154196,
+   "lo": 0.138953,
+   "hi": 0.17078,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese II+",
+    "6-7h"
+   ],
+   "n": 3349,
+   "events": 347,
+   "p": 0.103613,
+   "lo": 0.093742,
+   "hi": 0.114393,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese II+",
+    "8-9h"
+   ],
+   "n": 1616,
+   "events": 219,
+   "p": 0.13552,
+   "lo": 0.119693,
+   "hi": 0.153075,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "14 or more days",
+    "Obese II+",
+    "10h or more"
+   ],
+   "n": 559,
+   "events": 109,
+   "p": 0.194991,
+   "lo": 0.164275,
+   "hi": 0.22987,
+   "small_n": false,
+   "suppressed": false
+  }
+ ]
+}

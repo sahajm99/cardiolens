@@ -1,0 +1,26 @@
+{
+ "schema": "prevalence.v1",
+ "id": "prevalence_overall",
+ "generated_at": "2026-09-12T13:51:00.502235+00:00",
+ "outcome": "HeartDisease",
+ "group_by": [],
+ "levels": {},
+ "ci": {
+  "method": "wilson",
+  "level": 0.95
+ },
+ "n_total": 319795,
+ "events_total": 27373,
+ "rows": [
+  {
+   "key": [],
+   "n": 319795,
+   "events": 27373,
+   "p": 0.085595,
+   "lo": 0.084631,
+   "hi": 0.08657,
+   "small_n": false,
+   "suppressed": false
+  }
+ ]
+}

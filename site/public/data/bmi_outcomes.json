@@ -1,0 +1,593 @@
+{
+ "schema": "bmi_outcomes.v1",
+ "id": "bmi_outcomes",
+ "generated_at": "2026-09-12T13:51:01.099323+00:00",
+ "tables": {
+  "hd": {
+   "schema": "prevalence.v1",
+   "id": "bmi_outcomes",
+   "generated_at": "2026-09-12T13:51:01.086788+00:00",
+   "outcome": "HeartDisease",
+   "group_by": [
+    "AgeGroupAll",
+    "BMIClass"
+   ],
+   "levels": {
+    "AgeGroupAll": [
+     "All",
+     "18-44",
+     "45-64",
+     "65 and older"
+    ],
+    "BMIClass": [
+     "Underweight",
+     "Normal",
+     "Overweight",
+     "Obese I",
+     "Obese II+"
+    ]
+   },
+   "ci": {
+    "method": "wilson",
+    "level": 0.95
+   },
+   "n_total": 319795,
+   "events_total": 27373,
+   "rows": [
+    {
+     "key": [
+      "All",
+      "Underweight"
+     ],
+     "n": 5110,
+     "events": 401,
+     "p": 0.078474,
+     "lo": 0.071413,
+     "hi": 0.086167,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Normal"
+     ],
+     "n": 97331,
+     "events": 6309,
+     "p": 0.06482,
+     "lo": 0.06329,
+     "hi": 0.066384,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Overweight"
+     ],
+     "n": 114512,
+     "events": 9991,
+     "p": 0.087248,
+     "lo": 0.085628,
+     "hi": 0.088897,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Obese I"
+     ],
+     "n": 61345,
+     "events": 6160,
+     "p": 0.100416,
+     "lo": 0.098062,
+     "hi": 0.102819,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Obese II+"
+     ],
+     "n": 41497,
+     "events": 4512,
+     "p": 0.108731,
+     "lo": 0.105772,
+     "hi": 0.111762,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Underweight"
+     ],
+     "n": 1974,
+     "events": 38,
+     "p": 0.01925,
+     "lo": 0.014057,
+     "hi": 0.026311,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Normal"
+     ],
+     "n": 34716,
+     "events": 324,
+     "p": 0.009333,
+     "lo": 0.008374,
+     "hi": 0.0104,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Overweight"
+     ],
+     "n": 31818,
+     "events": 356,
+     "p": 0.011189,
+     "lo": 0.01009,
+     "hi": 0.012405,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Obese I"
+     ],
+     "n": 16654,
+     "events": 265,
+     "p": 0.015912,
+     "lo": 0.01412,
+     "hi": 0.017927,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Obese II+"
+     ],
+     "n": 13166,
+     "events": 288,
+     "p": 0.021875,
+     "lo": 0.019512,
+     "hi": 0.024516,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Underweight"
+     ],
+     "n": 1219,
+     "events": 100,
+     "p": 0.082034,
+     "lo": 0.067911,
+     "hi": 0.098784,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Normal"
+     ],
+     "n": 28113,
+     "events": 1323,
+     "p": 0.04706,
+     "lo": 0.044646,
+     "hi": 0.049598,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Overweight"
+     ],
+     "n": 40147,
+     "events": 2467,
+     "p": 0.061449,
+     "lo": 0.059142,
+     "hi": 0.063841,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Obese I"
+     ],
+     "n": 23868,
+     "events": 1906,
+     "p": 0.079856,
+     "lo": 0.076484,
+     "hi": 0.083363,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Obese II+"
+     ],
+     "n": 17269,
+     "events": 1860,
+     "p": 0.107707,
+     "lo": 0.103171,
+     "hi": 0.112419,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Underweight"
+     ],
+     "n": 1917,
+     "events": 263,
+     "p": 0.137194,
+     "lo": 0.122516,
+     "hi": 0.153322,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Normal"
+     ],
+     "n": 34502,
+     "events": 4662,
+     "p": 0.135123,
+     "lo": 0.131556,
+     "hi": 0.13877,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Overweight"
+     ],
+     "n": 42547,
+     "events": 7168,
+     "p": 0.168473,
+     "lo": 0.164946,
+     "hi": 0.172059,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Obese I"
+     ],
+     "n": 20823,
+     "events": 3989,
+     "p": 0.191567,
+     "lo": 0.186279,
+     "hi": 0.196969,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Obese II+"
+     ],
+     "n": 11062,
+     "events": 2364,
+     "p": 0.213705,
+     "lo": 0.206166,
+     "hi": 0.221442,
+     "small_n": false,
+     "suppressed": false
+    }
+   ]
+  },
+  "stroke": {
+   "schema": "prevalence.v1",
+   "id": "bmi_outcomes",
+   "generated_at": "2026-09-12T13:51:01.099323+00:00",
+   "outcome": "Stroke",
+   "group_by": [
+    "AgeGroupAll",
+    "BMIClass"
+   ],
+   "levels": {
+    "AgeGroupAll": [
+     "All",
+     "18-44",
+     "45-64",
+     "65 and older"
+    ],
+    "BMIClass": [
+     "Underweight",
+     "Normal",
+     "Overweight",
+     "Obese I",
+     "Obese II+"
+    ]
+   },
+   "ci": {
+    "method": "wilson",
+    "level": 0.95
+   },
+   "n_total": 319795,
+   "events_total": 12069,
+   "rows": [
+    {
+     "key": [
+      "All",
+      "Underweight"
+     ],
+     "n": 5110,
+     "events": 255,
+     "p": 0.049902,
+     "lo": 0.044263,
+     "hi": 0.056218,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Normal"
+     ],
+     "n": 97331,
+     "events": 3088,
+     "p": 0.031727,
+     "lo": 0.030644,
+     "hi": 0.032847,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Overweight"
+     ],
+     "n": 114512,
+     "events": 4289,
+     "p": 0.037455,
+     "lo": 0.03637,
+     "hi": 0.03857,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Obese I"
+     ],
+     "n": 61345,
+     "events": 2604,
+     "p": 0.042448,
+     "lo": 0.040881,
+     "hi": 0.044073,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "All",
+      "Obese II+"
+     ],
+     "n": 41497,
+     "events": 1833,
+     "p": 0.044172,
+     "lo": 0.042237,
+     "hi": 0.046191,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Underweight"
+     ],
+     "n": 1974,
+     "events": 20,
+     "p": 0.010132,
+     "lo": 0.006568,
+     "hi": 0.015598,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Normal"
+     ],
+     "n": 34716,
+     "events": 200,
+     "p": 0.005761,
+     "lo": 0.005018,
+     "hi": 0.006614,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Overweight"
+     ],
+     "n": 31818,
+     "events": 218,
+     "p": 0.006851,
+     "lo": 0.006003,
+     "hi": 0.007819,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Obese I"
+     ],
+     "n": 16654,
+     "events": 166,
+     "p": 0.009968,
+     "lo": 0.008568,
+     "hi": 0.011593,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "18-44",
+      "Obese II+"
+     ],
+     "n": 13166,
+     "events": 164,
+     "p": 0.012456,
+     "lo": 0.010699,
+     "hi": 0.014498,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Underweight"
+     ],
+     "n": 1219,
+     "events": 57,
+     "p": 0.04676,
+     "lo": 0.036265,
+     "hi": 0.060102,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Normal"
+     ],
+     "n": 28113,
+     "events": 741,
+     "p": 0.026358,
+     "lo": 0.024549,
+     "hi": 0.028296,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Overweight"
+     ],
+     "n": 40147,
+     "events": 1237,
+     "p": 0.030812,
+     "lo": 0.029166,
+     "hi": 0.032548,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Obese I"
+     ],
+     "n": 23868,
+     "events": 842,
+     "p": 0.035277,
+     "lo": 0.033011,
+     "hi": 0.037694,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "45-64",
+      "Obese II+"
+     ],
+     "n": 17269,
+     "events": 820,
+     "p": 0.047484,
+     "lo": 0.044411,
+     "hi": 0.050758,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Underweight"
+     ],
+     "n": 1917,
+     "events": 178,
+     "p": 0.092853,
+     "lo": 0.080663,
+     "hi": 0.106672,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Normal"
+     ],
+     "n": 34502,
+     "events": 2147,
+     "p": 0.062228,
+     "lo": 0.059728,
+     "hi": 0.064826,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Overweight"
+     ],
+     "n": 42547,
+     "events": 2834,
+     "p": 0.066609,
+     "lo": 0.064278,
+     "hi": 0.069017,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Obese I"
+     ],
+     "n": 20823,
+     "events": 1596,
+     "p": 0.076646,
+     "lo": 0.07311,
+     "hi": 0.080338,
+     "small_n": false,
+     "suppressed": false
+    },
+    {
+     "key": [
+      "65 and older",
+      "Obese II+"
+     ],
+     "n": 11062,
+     "events": 849,
+     "p": 0.076749,
+     "lo": 0.071934,
+     "hi": 0.081858,
+     "small_n": false,
+     "suppressed": false
+    }
+   ]
+  }
+ }
+}

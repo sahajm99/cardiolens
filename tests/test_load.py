@@ -1,4 +1,7 @@
+import pytest
+
 from pipeline.constants import AGE_BANDS, RACES, BMI_CLASSES, SLEEP_BANDS, MENTAL_BANDS, AGE_GROUPS3
+from pipeline.load import add_derived, load_raw
 
 
 def test_shape(df):
@@ -41,3 +44,11 @@ def test_age_group3(df):
 
 def test_binary_categoricals(df):
     assert list(df["Smoking"].cat.categories) == ["No", "Yes"]
+
+
+def test_add_derived_rejects_unexpected_race_value():
+    raw = load_raw()
+    bad = raw.copy()
+    bad.loc[0, "Race"] = "Martian"
+    with pytest.raises(ValueError):
+        add_derived(bad)

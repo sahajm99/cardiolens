@@ -1,0 +1,188 @@
+{
+ "schema": "prevalence.v1",
+ "id": "race_stroke_hd",
+ "generated_at": "2026-09-12T13:51:01.110135+00:00",
+ "outcome": "HeartDisease",
+ "group_by": [
+  "Stroke",
+  "Race"
+ ],
+ "levels": {
+  "Stroke": [
+   "No",
+   "Yes"
+  ],
+  "Race": [
+   "White",
+   "Black",
+   "Hispanic",
+   "Asian",
+   "American Indian/Alaskan Native",
+   "Other"
+  ]
+ },
+ "ci": {
+  "method": "wilson",
+  "level": 0.95
+ },
+ "n_total": 319795,
+ "events_total": 27373,
+ "rows": [
+  {
+   "key": [
+    "No",
+    "White"
+   ],
+   "n": 235928,
+   "events": 19153,
+   "p": 0.081182,
+   "lo": 0.080086,
+   "hi": 0.08229,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "No",
+    "Black"
+   ],
+   "n": 21683,
+   "events": 1328,
+   "p": 0.061246,
+   "lo": 0.058132,
+   "hi": 0.064516,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "No",
+    "Hispanic"
+   ],
+   "n": 26851,
+   "events": 1194,
+   "p": 0.044468,
+   "lo": 0.042067,
+   "hi": 0.046999,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "No",
+    "Asian"
+   ],
+   "n": 7917,
+   "events": 214,
+   "p": 0.02703,
+   "lo": 0.023681,
+   "hi": 0.030839,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "No",
+    "American Indian/Alaskan Native"
+   ],
+   "n": 4895,
+   "events": 400,
+   "p": 0.081716,
+   "lo": 0.074366,
+   "hi": 0.089722,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "No",
+    "Other"
+   ],
+   "n": 10452,
+   "events": 695,
+   "p": 0.066494,
+   "lo": 0.061876,
+   "hi": 0.071432,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Yes",
+    "White"
+   ],
+   "n": 9284,
+   "events": 3354,
+   "p": 0.361267,
+   "lo": 0.351555,
+   "hi": 0.371094,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Yes",
+    "Black"
+   ],
+   "n": 1256,
+   "events": 401,
+   "p": 0.319268,
+   "lo": 0.29407,
+   "hi": 0.345567,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Yes",
+    "Hispanic"
+   ],
+   "n": 595,
+   "events": 249,
+   "p": 0.418487,
+   "lo": 0.379496,
+   "hi": 0.458524,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Yes",
+    "Asian"
+   ],
+   "n": 151,
+   "events": 52,
+   "p": 0.344371,
+   "lo": 0.27329,
+   "hi": 0.423174,
+   "small_n": true,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Yes",
+    "American Indian/Alaskan Native"
+   ],
+   "n": 307,
+   "events": 142,
+   "p": 0.462541,
+   "lo": 0.407574,
+   "hi": 0.518433,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Yes",
+    "Other"
+   ],
+   "n": 476,
+   "events": 191,
+   "p": 0.401261,
+   "lo": 0.358188,
+   "hi": 0.445914,
+   "small_n": false,
+   "suppressed": false
+  }
+ ]
+}

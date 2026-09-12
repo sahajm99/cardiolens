@@ -1,0 +1,190 @@
+{
+ "schema": "prevalence.v1",
+ "id": "prevalence_by_age",
+ "generated_at": "2026-09-12T13:51:00.506748+00:00",
+ "outcome": "HeartDisease",
+ "group_by": [
+  "AgeCategory"
+ ],
+ "levels": {
+  "AgeCategory": [
+   "18-24",
+   "25-29",
+   "30-34",
+   "35-39",
+   "40-44",
+   "45-49",
+   "50-54",
+   "55-59",
+   "60-64",
+   "65-69",
+   "70-74",
+   "75-79",
+   "80 or older"
+  ]
+ },
+ "ci": {
+  "method": "wilson",
+  "level": 0.95
+ },
+ "n_total": 319795,
+ "events_total": 27373,
+ "rows": [
+  {
+   "key": [
+    "18-24"
+   ],
+   "n": 21064,
+   "events": 130,
+   "p": 0.006172,
+   "lo": 0.0052,
+   "hi": 0.007323,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "25-29"
+   ],
+   "n": 16955,
+   "events": 133,
+   "p": 0.007844,
+   "lo": 0.006623,
+   "hi": 0.009288,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "30-34"
+   ],
+   "n": 18753,
+   "events": 226,
+   "p": 0.012051,
+   "lo": 0.010587,
+   "hi": 0.013716,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "35-39"
+   ],
+   "n": 20550,
+   "events": 296,
+   "p": 0.014404,
+   "lo": 0.012863,
+   "hi": 0.016126,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "40-44"
+   ],
+   "n": 21006,
+   "events": 486,
+   "p": 0.023136,
+   "lo": 0.021189,
+   "hi": 0.025258,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "45-49"
+   ],
+   "n": 21791,
+   "events": 744,
+   "p": 0.034143,
+   "lo": 0.031812,
+   "hi": 0.036637,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "50-54"
+   ],
+   "n": 25382,
+   "events": 1383,
+   "p": 0.054487,
+   "lo": 0.051762,
+   "hi": 0.057348,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "55-59"
+   ],
+   "n": 29757,
+   "events": 2202,
+   "p": 0.073999,
+   "lo": 0.07108,
+   "hi": 0.077029,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "60-64"
+   ],
+   "n": 33686,
+   "events": 3327,
+   "p": 0.098765,
+   "lo": 0.095625,
+   "hi": 0.101997,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "65-69"
+   ],
+   "n": 34151,
+   "events": 4101,
+   "p": 0.120084,
+   "lo": 0.116679,
+   "hi": 0.123575,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "70-74"
+   ],
+   "n": 31065,
+   "events": 4847,
+   "p": 0.156028,
+   "lo": 0.152035,
+   "hi": 0.160106,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "75-79"
+   ],
+   "n": 21482,
+   "events": 4049,
+   "p": 0.188483,
+   "lo": 0.183309,
+   "hi": 0.193769,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "80 or older"
+   ],
+   "n": 24153,
+   "events": 5449,
+   "p": 0.225603,
+   "lo": 0.220376,
+   "hi": 0.230918,
+   "small_n": false,
+   "suppressed": false
+  }
+ ]
+}

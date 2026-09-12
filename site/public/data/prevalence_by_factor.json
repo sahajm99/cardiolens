@@ -1,0 +1,321 @@
+{
+ "schema": "factor_prevalence.v1",
+ "id": "prevalence_by_factor",
+ "generated_at": "2026-09-12T13:51:00.613641+00:00",
+ "n_total": 319795,
+ "events_total": 27373,
+ "factors": [
+  {
+   "id": "poor_health",
+   "label": "General health",
+   "column": "GenHealth",
+   "exposed": {
+    "label": "Fair or poor health",
+    "n": 45966,
+    "events": 10934,
+    "p": 0.237871,
+    "lo": 0.234001,
+    "hi": 0.241786
+   },
+   "unexposed": {
+    "label": "Excellent or very good health",
+    "n": 180700,
+    "events": 6881,
+    "p": 0.03808,
+    "lo": 0.037207,
+    "hi": 0.038972
+   },
+   "ratio": 6.246612,
+   "ratio_lo": 6.071895,
+   "ratio_hi": 6.426357
+  },
+  {
+   "id": "stroke",
+   "label": "Stroke history",
+   "column": "Stroke",
+   "exposed": {
+    "label": "History of stroke",
+    "n": 12069,
+    "events": 4389,
+    "p": 0.363659,
+    "lo": 0.355121,
+    "hi": 0.372283
+   },
+   "unexposed": {
+    "label": "No history of stroke",
+    "n": 307726,
+    "events": 22984,
+    "p": 0.07469,
+    "lo": 0.073766,
+    "hi": 0.075624
+   },
+   "ratio": 4.868912,
+   "ratio_lo": 4.740746,
+   "ratio_hi": 5.000542
+  },
+  {
+   "id": "kidney",
+   "label": "Kidney disease",
+   "column": "KidneyDisease",
+   "exposed": {
+    "label": "Kidney disease",
+    "n": 11779,
+    "events": 3455,
+    "p": 0.293319,
+    "lo": 0.285165,
+    "hi": 0.301607
+   },
+   "unexposed": {
+    "label": "No kidney disease",
+    "n": 308016,
+    "events": 23918,
+    "p": 0.077652,
+    "lo": 0.076712,
+    "hi": 0.078602
+   },
+   "ratio": 3.777353,
+   "ratio_lo": 3.663666,
+   "ratio_hi": 3.894568
+  },
+  {
+   "id": "diff_walking",
+   "label": "Difficulty walking",
+   "column": "DiffWalking",
+   "exposed": {
+    "label": "Difficulty walking",
+    "n": 44410,
+    "events": 10028,
+    "p": 0.225805,
+    "lo": 0.22194,
+    "hi": 0.229717
+   },
+   "unexposed": {
+    "label": "No difficulty walking",
+    "n": 275385,
+    "events": 17345,
+    "p": 0.062985,
+    "lo": 0.062083,
+    "hi": 0.063898
+   },
+   "ratio": 3.58506,
+   "ratio_lo": 3.505465,
+   "ratio_hi": 3.666463
+  },
+  {
+   "id": "diabetes",
+   "label": "Diabetes",
+   "column": "Diabetic",
+   "exposed": {
+    "label": "Diabetic",
+    "n": 40802,
+    "events": 8957,
+    "p": 0.219524,
+    "lo": 0.215534,
+    "hi": 0.223566
+   },
+   "unexposed": {
+    "label": "Non-diabetic",
+    "n": 269653,
+    "events": 17519,
+    "p": 0.064969,
+    "lo": 0.064045,
+    "hi": 0.065905
+   },
+   "ratio": 3.378904,
+   "ratio_lo": 3.301308,
+   "ratio_hi": 3.458324
+  },
+  {
+   "id": "skin_cancer",
+   "label": "Skin cancer",
+   "column": "SkinCancer",
+   "exposed": {
+    "label": "Skin cancer",
+    "n": 29819,
+    "events": 4980,
+    "p": 0.167008,
+    "lo": 0.162817,
+    "hi": 0.171284
+   },
+   "unexposed": {
+    "label": "No skin cancer",
+    "n": 289976,
+    "events": 22393,
+    "p": 0.077224,
+    "lo": 0.076258,
+    "hi": 0.078201
+   },
+   "ratio": 2.162644,
+   "ratio_lo": 2.1023,
+   "ratio_hi": 2.224719
+  },
+  {
+   "id": "smoking",
+   "label": "Smoking",
+   "column": "Smoking",
+   "exposed": {
+    "label": "Smoker",
+    "n": 131908,
+    "events": 16037,
+    "p": 0.121577,
+    "lo": 0.119825,
+    "hi": 0.123352
+   },
+   "unexposed": {
+    "label": "Non-smoker",
+    "n": 187887,
+    "events": 11336,
+    "p": 0.060334,
+    "lo": 0.059266,
+    "hi": 0.06142
+   },
+   "ratio": 2.015066,
+   "ratio_lo": 1.969255,
+   "ratio_hi": 2.061943
+  },
+  {
+   "id": "inactivity",
+   "label": "Physical inactivity",
+   "column": "PhysicalActivity",
+   "exposed": {
+    "label": "No physical activity",
+    "n": 71838,
+    "events": 9884,
+    "p": 0.137587,
+    "lo": 0.135088,
+    "hi": 0.140126
+   },
+   "unexposed": {
+    "label": "Physically active",
+    "n": 247957,
+    "events": 17489,
+    "p": 0.070532,
+    "lo": 0.069531,
+    "hi": 0.071547
+   },
+   "ratio": 1.950703,
+   "ratio_lo": 1.905923,
+   "ratio_hi": 1.996536
+  },
+  {
+   "id": "short_sleep",
+   "label": "Short sleep",
+   "column": "SleepBand",
+   "exposed": {
+    "label": "Under 6h",
+    "n": 30265,
+    "events": 3745,
+    "p": 0.12374,
+    "lo": 0.120078,
+    "hi": 0.127498
+   },
+   "unexposed": {
+    "label": "6-7h",
+    "n": 164472,
+    "events": 11752,
+    "p": 0.071453,
+    "lo": 0.070218,
+    "hi": 0.072708
+   },
+   "ratio": 1.731768,
+   "ratio_lo": 1.672748,
+   "ratio_hi": 1.79287
+  },
+  {
+   "id": "obesity",
+   "label": "Obesity",
+   "column": "BMIClass",
+   "exposed": {
+    "label": "Obese",
+    "n": 102842,
+    "events": 10672,
+    "p": 0.103771,
+    "lo": 0.101922,
+    "hi": 0.10565
+   },
+   "unexposed": {
+    "label": "Normal weight",
+    "n": 97331,
+    "events": 6309,
+    "p": 0.06482,
+    "lo": 0.06329,
+    "hi": 0.066384
+   },
+   "ratio": 1.60091,
+   "ratio_lo": 1.553803,
+   "ratio_hi": 1.649445
+  },
+  {
+   "id": "sex",
+   "label": "Sex",
+   "column": "Sex",
+   "exposed": {
+    "label": "Male",
+    "n": 151990,
+    "events": 16139,
+    "p": 0.106185,
+    "lo": 0.104646,
+    "hi": 0.107743
+   },
+   "unexposed": {
+    "label": "Female",
+    "n": 167805,
+    "events": 11234,
+    "p": 0.066947,
+    "lo": 0.065761,
+    "hi": 0.068153
+   },
+   "ratio": 1.586105,
+   "ratio_lo": 1.549947,
+   "ratio_hi": 1.623107
+  },
+  {
+   "id": "asthma",
+   "label": "Asthma",
+   "column": "Asthma",
+   "exposed": {
+    "label": "Asthma",
+    "n": 42872,
+    "events": 4933,
+    "p": 0.115063,
+    "lo": 0.112077,
+    "hi": 0.118119
+   },
+   "unexposed": {
+    "label": "No asthma",
+    "n": 276923,
+    "events": 22440,
+    "p": 0.081033,
+    "lo": 0.080023,
+    "hi": 0.082056
+   },
+   "ratio": 1.419952,
+   "ratio_lo": 1.379236,
+   "ratio_hi": 1.461871
+  },
+  {
+   "id": "alcohol",
+   "label": "Alcohol drinking",
+   "column": "AlcoholDrinking",
+   "exposed": {
+    "label": "Drinker",
+    "n": 21777,
+    "events": 1141,
+    "p": 0.052395,
+    "lo": 0.049513,
+    "hi": 0.055434
+   },
+   "unexposed": {
+    "label": "Non-drinker",
+    "n": 298018,
+    "events": 26232,
+    "p": 0.088022,
+    "lo": 0.08701,
+    "hi": 0.089044
+   },
+   "ratio": 0.595249,
+   "ratio_lo": 0.561901,
+   "ratio_hi": 0.630576
+  }
+ ]
+}

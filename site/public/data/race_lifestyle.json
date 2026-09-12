@@ -1,0 +1,95 @@
+{
+ "schema": "summary.v1",
+ "id": "race_lifestyle",
+ "generated_at": "2026-09-12T13:51:01.145309+00:00",
+ "group_by": [
+  "Race"
+ ],
+ "n_total": 319795,
+ "rows": [
+  {
+   "key": [
+    "White"
+   ],
+   "n": 245212,
+   "bmi_mean": 28.153422,
+   "bmi_lo": 28.128921,
+   "bmi_hi": 28.177923,
+   "activity_rate": 0.790133,
+   "activity_lo": 0.788516,
+   "activity_hi": 0.79174,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Black"
+   ],
+   "n": 22939,
+   "bmi_mean": 30.169993,
+   "bmi_lo": 30.076846,
+   "bmi_hi": 30.26314,
+   "activity_rate": 0.709752,
+   "activity_lo": 0.703844,
+   "activity_hi": 0.71559,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Hispanic"
+   ],
+   "n": 27446,
+   "bmi_mean": 28.818086,
+   "bmi_lo": 28.740645,
+   "bmi_hi": 28.895526,
+   "activity_rate": 0.698317,
+   "activity_lo": 0.692859,
+   "activity_hi": 0.703719,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Asian"
+   ],
+   "n": 8068,
+   "bmi_mean": 25.218303,
+   "bmi_lo": 25.111897,
+   "bmi_hi": 25.32471,
+   "activity_rate": 0.806767,
+   "activity_lo": 0.798007,
+   "activity_hi": 0.815236,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "American Indian/Alaskan Native"
+   ],
+   "n": 5202,
+   "bmi_mean": 29.627678,
+   "bmi_lo": 29.439202,
+   "bmi_hi": 29.816154,
+   "activity_rate": 0.717801,
+   "activity_lo": 0.705413,
+   "activity_hi": 0.729867,
+   "small_n": false,
+   "suppressed": false
+  },
+  {
+   "key": [
+    "Other"
+   ],
+   "n": 10928,
+   "bmi_mean": 28.748967,
+   "bmi_lo": 28.617586,
+   "bmi_hi": 28.880348,
+   "activity_rate": 0.779374,
+   "activity_lo": 0.771502,
+   "activity_hi": 0.78705,
+   "small_n": false,
+   "suppressed": false
+  }
+ ]
+}
