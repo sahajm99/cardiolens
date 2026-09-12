@@ -29,11 +29,25 @@ npm run dev                  # http://localhost:5173/cardiolens/
 build. CI re-runs the pipeline and fails if the committed JSON differs from a fresh run,
 so the numbers on the site can never drift from the code that produced them.
 
+## Notebook
+
+`notebooks/analysis.ipynb` is the long-form version of the site: the same numbers, from
+the same `pipeline/` functions, with each step written out so a reader can see what
+question is asked, what the number answers and what it cannot answer. It is committed
+with its outputs. The notebook is generated rather than hand-edited, so rebuilding it is
+one command: `uv run python notebooks/build_notebook.py` writes the `.ipynb` from
+`notebooks/build_notebook.py`, then `uv run jupyter nbconvert --to notebook --execute
+--inplace notebooks/analysis.ipynb --ExecutePreprocessor.timeout=600` fills in the
+outputs and `uv run python notebooks/build_notebook.py --normalise-eol` puts the line
+endings back to LF. CI executes the notebook to `/tmp` on every run, so a change to the
+pipeline that breaks the narrative fails the build.
+
 ## Layout
 
 | Path | What is in it |
 |------|---------------|
 | `pipeline/` | The Python package: loaders, Wilson intervals, aggregates, logistic models, age standardisation. `python -m pipeline` is the only entry point. |
+| `notebooks/` | The long-form analysis notebook and the script that generates it. |
 | `tests/` | pytest suite: structural checks over every JSON file, conservation of counts, model checks, a golden file. |
 | `data/raw/` | The source CSV and `SOURCE.md`. |
 | `site/` | Vite + TypeScript + Plotly front end. `site/public/data/` holds the committed JSON aggregates. |

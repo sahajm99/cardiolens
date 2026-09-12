@@ -23,6 +23,7 @@ jobs:
             diff -u /tmp/committed.json /tmp/fresh.json || { echo "::error::$f is stale; run python -m pipeline and commit"; exit 1; }
           done
       - run: uv run pytest
+      - run: uv run jupyter nbconvert --to notebook --execute notebooks/analysis.ipynb --output /tmp/analysis.ipynb --ExecutePreprocessor.timeout=600
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm, cache-dependency-path: site/package-lock.json }
       - run: npm ci
