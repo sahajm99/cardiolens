@@ -1,0 +1,41 @@
+name: ci
+on: { push: { branches: [main] }, pull_request: {}, workflow_dispatch: {} }
+permissions: { contents: read, pages: write, id-token: write }
+concurrency: { group: pages, cancel-in-progress: false }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with: { python-version: "3.12" }
+      - run: uv sync --frozen
+      - run: uv run python -m pipeline
+      - name: Committed JSON must match the pipeline output
+        run: |
+          for f in site/public/data/*.json; do
+            if ! git show HEAD:"$f" > /tmp/head.json 2>/dev/null; then
+              echo "::error::$f is not committed; run python -m pipeline and commit it"
+              exit 1
+            fi
+            grep -v '"generated_at"' /tmp/head.json > /tmp/committed.json
+            grep -v '"generated_at"' "$f" > /tmp/fresh.json
+            diff -u /tmp/committed.json /tmp/fresh.json || { echo "::error::$f is stale; run python -m pipeline and commit"; exit 1; }
+          done
+      - run: uv run pytest
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: site/package-lock.json }
+      - run: npm ci
+        working-directory: site
+      - run: npm run build
+        working-directory: site
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: site/dist }
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: "${{ steps.deployment.outputs.page_url }}" }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

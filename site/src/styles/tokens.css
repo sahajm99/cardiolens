@@ -1,0 +1,83 @@
+/* Design tokens. Dark is a selected palette, not an inversion of light. */
+
+:root {
+  color-scheme: light;
+
+  --surface: #fbfaf7;
+  --surface-2: #f1efe9;
+  --ink: #16181d;
+  --ink-2: #4a4d55;
+  --ink-3: #8a8d95;
+  --grid: #e2e0d9;
+  --accent: #2a78d6;
+  --flag: #eb6834;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --seq-1: #cde2fb;
+  --seq-2: #9ec5f4;
+  --seq-3: #5598e7;
+  --seq-4: #256abf;
+  --seq-5: #104281;
+
+  --font-prose: "Source Serif 4 Variable", Georgia, serif;
+  --font-ui: "Source Sans 3 Variable", system-ui, sans-serif;
+
+  --prose-width: 68ch;
+  --fig-width: 880px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.5rem;
+  --space-7: 4rem;
+  --radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --surface: #15161a;
+    --surface-2: #1f2127;
+    --ink: #f2f1ec;
+    --ink-2: #c3c2b7;
+    --ink-3: #85868f;
+    --grid: #2d2f36;
+    --accent: #3987e5;
+    --flag: #d95926;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --seq-1: #184f95;
+    --seq-2: #1c5cab;
+    --seq-3: #3987e5;
+    --seq-4: #86b6ef;
+    --seq-5: #cde2fb;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --surface: #15161a;
+  --surface-2: #1f2127;
+  --ink: #f2f1ec;
+  --ink-2: #c3c2b7;
+  --ink-3: #85868f;
+  --grid: #2d2f36;
+  --accent: #3987e5;
+  --flag: #d95926;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --seq-1: #184f95;
+  --seq-2: #1c5cab;
+  --seq-3: #3987e5;
+  --seq-4: #86b6ef;
+  --seq-5: #cde2fb;
+}
