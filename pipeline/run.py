@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pipeline.load import load_data
+from pipeline.models import write_models
 from pipeline.prevalence import (
     write_bmi_outcomes,
     write_bmi_sleep_heatmap,
@@ -29,6 +30,7 @@ WRITERS = [
     write_race_stroke_hd,
     write_race_genhealth,
     write_race_lifestyle,
+    write_models,
 ]
 
 
@@ -36,7 +38,9 @@ def run() -> list:
     df = load_data()
     paths = []
     for writer in WRITERS:
-        path = writer(df)
-        print(f"{path.name}  {path.stat().st_size}")
-        paths.append(path)
+        # A writer returns either a single Path or a list of Paths.
+        written = writer(df)
+        for path in written if isinstance(written, list) else [written]:
+            print(f"{path.name}  {path.stat().st_size}")
+            paths.append(path)
     return paths
