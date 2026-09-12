@@ -19,3 +19,5 @@ site/.vite/
 Thumbs.db
 .vscode/
 .idea/
+.gstack/
+.superpowers/
