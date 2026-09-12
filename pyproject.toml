@@ -1,0 +1,29 @@
+[project]
+name = "cardiolens"
+version = "0.1.0"
+description = "Reproducible aggregation pipeline for the CardioLens heart-disease analysis site"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+dependencies = [
+    "pandas>=2.2,<3",
+    "numpy>=1.26,<3",
+    "statsmodels>=0.14,<0.15",
+    "scipy>=1.12,<2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "jupyter>=1.0",
+    "nbconvert>=7",
+    "ipykernel>=6",
+    "matplotlib>=3.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.uv]
+package = false
