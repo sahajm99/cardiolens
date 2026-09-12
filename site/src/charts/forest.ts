@@ -4,7 +4,13 @@ import { int, ratio } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { OddsModel, OddsRatios, OddsTerm } from "../types.ts";
-import { CONFIG, layoutTemplate, series } from "./theme.ts";
+import {
+  CONFIG,
+  errorBars,
+  layoutTemplate,
+  reversed,
+  series,
+} from "./theme.ts";
 
 /** Ticks of the log axis: the odds ratios this file carries span 0.7 to 38. */
 const TICKS = [0.5, 1, 2, 5, 10, 20, 40];
@@ -13,11 +19,6 @@ const UPSTREAM_HEADING =
   "Adjusted for each other: plausibly upstream factors (primary model)";
 const DOWNSTREAM_HEADING =
   "Markers that travel with heart disease: not causes (full model)";
-
-/** Plotly stacks the first y category at the bottom, so the list is reversed. */
-function reversed<T>(xs: T[]): T[] {
-  return xs.slice().reverse();
-}
 
 function findTerm(
   model: OddsModel,
@@ -48,11 +49,17 @@ function ciRatio(lo: number | null, hi: number | null): string {
 const HOVER =
   "<b>%{x:.2f}x</b> %{customdata[0]}<br>n = %{customdata[1]:,}%{customdata[2]}<extra>%{y}</extra>";
 
+/**
+ * One group of rows. `open` draws the hollow marker a reference level gets;
+ * `bars` is false for any row the file gives no interval for, so an estimate
+ * without a 95% interval never shows a bar of zero length instead of none.
+ */
 function termTrace(
   terms: OddsTerm[],
   axis: "y" | "y2",
   color: string,
   open: boolean,
+  bars: boolean,
 ): Partial<Plotly.PlotData> {
   const ts = reversed(terms);
   return {
@@ -64,7 +71,11 @@ function termTrace(
     y: ts.map((t) => t.label),
     x: ts.map((t) => t.or),
     customdata: ts.map((t) => [
-      t.is_reference ? "(reference level)" : `(95% CI ${ciRatio(t.lo, t.hi)})`,
+      t.is_reference
+        ? "(reference level)"
+        : t.lo === null || t.hi === null
+          ? "(no interval in the file)"
+          : `(95% CI ${ciRatio(t.lo, t.hi)})`,
       t.n_level,
       t.p_value === null ? "" : `<br>${pText(t.p_value)}`,
     ]),
@@ -75,21 +86,25 @@ function termTrace(
       size: 7,
       line: { color, width: 1.5 },
     },
-    error_x: open
-      ? undefined
-      : {
-          type: "data",
-          symmetric: false,
-          array: ts.map((t) => (t.hi ?? t.or) - t.or),
-          arrayminus: ts.map((t) => t.or - (t.lo ?? t.or)),
-          color,
-          thickness: 1,
+    error_x: bars
+      ? {
+          ...errorBars(
+            ts.map((t) => t.or),
+            ts.map((t) => t.lo ?? t.or),
+            ts.map((t) => t.hi ?? t.or),
+            color,
+          ),
           width: 0,
-        },
+        }
+      : undefined,
   };
 }
 
-/** Reference rows, stable estimates and unstable estimates, in that order. */
+/**
+ * Reference rows, stable estimates, and the rows that get the muted colour:
+ * an estimate the fit flagged unstable, and any estimate the file carries no
+ * interval for. Neither of those is drawn with a bar.
+ */
 function panelTraces(
   terms: OddsTerm[],
   axis: "y" | "y2",
@@ -97,12 +112,17 @@ function panelTraces(
   mutedColor: string,
 ): Partial<Plotly.PlotData>[] {
   const out: Partial<Plotly.PlotData>[] = [];
+  const hasCi = (t: OddsTerm): boolean => t.lo !== null && t.hi !== null;
   const refs = terms.filter((t) => t.is_reference);
-  const stable = terms.filter((t) => !t.is_reference && !t.unstable);
-  const unstable = terms.filter((t) => !t.is_reference && t.unstable);
-  if (refs.length) out.push(termTrace(refs, axis, color, true));
-  if (stable.length) out.push(termTrace(stable, axis, color, false));
-  if (unstable.length) out.push(termTrace(unstable, axis, mutedColor, false));
+  const rest = terms.filter((t) => !t.is_reference);
+  const stable = rest.filter((t) => hasCi(t) && !t.unstable);
+  const unstable = rest.filter((t) => hasCi(t) && t.unstable);
+  const noCi = rest.filter((t) => !hasCi(t));
+  if (refs.length) out.push(termTrace(refs, axis, color, true, false));
+  if (stable.length) out.push(termTrace(stable, axis, color, false, true));
+  if (unstable.length)
+    out.push(termTrace(unstable, axis, mutedColor, false, true));
+  if (noCi.length) out.push(termTrace(noCi, axis, mutedColor, false, false));
   return out;
 }
 
@@ -173,7 +193,7 @@ export async function render(container: HTMLElement): Promise<void> {
   const spec: FigureSpec = {
     id: "fig-forest",
     title: claim,
-    subtitle: `Adjusted odds ratios with 95% intervals, logistic regression on ${int(primary.n_obs)} adults; an odds ratio is not a risk ratio, and this survey cannot show cause`,
+    subtitle: `Adjusted odds ratios with 95% intervals, logistic regression on ${int(primary.n_obs)} adults; an odds ratio is not a prevalence ratio, and this survey cannot show cause`,
     note: "Source: Kaggle extract of CDC BRFSS 2020",
     alt: `Forest plot on a log scale. The upper panel shows the primary model's adjusted odds ratios for age, sex, BMI class and diagnosed conditions; the lower panel shows physical activity, difficulty walking and self-rated health from the full model. ${claim}.`,
     table: {

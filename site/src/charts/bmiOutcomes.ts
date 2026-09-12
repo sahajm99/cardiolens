@@ -1,5 +1,6 @@
 import { loadJson } from "../data.ts";
 import {
+  controlSlot,
   mountFigure,
   showError,
   updateFigure,
@@ -9,7 +10,14 @@ import { ciText, int, pct } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { BmiOutcomes, Prevalence } from "../types.ts";
-import { CONFIG, errorBars, layoutTemplate, series } from "./theme.ts";
+import { pointsFor, type Point } from "./points.ts";
+import {
+  CONFIG,
+  errorBars,
+  horizontalLegend,
+  layoutTemplate,
+  series,
+} from "./theme.ts";
 
 /** The picker's faces and the fragment each one puts into the subtitle. */
 const AGE_PHRASE: Record<string, string | undefined> = {
@@ -22,47 +30,25 @@ const AGE_PHRASE: Record<string, string | undefined> = {
 const NORMAL = "Normal";
 const HEAVIEST = "Obese II+";
 
-interface Point {
-  bmi: string;
-  p: number;
-  lo: number;
-  hi: number;
-  n: number;
-  smallN: boolean;
-}
-
-function pointsFor(table: Prevalence, age: string): Point[] {
-  const out: Point[] = [];
-  for (const bmi of table.levels["BMIClass"] ?? []) {
-    const row = table.rows.find((r) => r.key[0] === age && r.key[1] === bmi);
-    if (!row || row.p === null || row.lo === null || row.hi === null) continue;
-    out.push({
-      bmi,
-      p: row.p,
-      lo: row.lo,
-      hi: row.hi,
-      n: row.n,
-      smallN: row.small_n,
-    });
-  }
-  return out;
+function bmiPoints(table: Prevalence, age: string): Point[] {
+  return pointsFor(table, "BMIClass", age);
 }
 
 function at(points: Point[], bmi: string): Point | undefined {
-  return points.find((d) => d.bmi === bmi);
+  return points.find((d) => d.label === bmi);
 }
 
 /** True when prevalence only climbs from normal weight to the heaviest class. */
 function rises(points: Point[]): boolean {
-  const from = points.findIndex((d) => d.bmi === NORMAL);
+  const from = points.findIndex((d) => d.label === NORMAL);
   if (from < 0) return false;
   const run = points.slice(from);
   return run.every((d, i) => i === 0 || d.p > (run[i - 1] as Point).p);
 }
 
 function specFor(data: BmiOutcomes, age: string): FigureSpec {
-  const hd = pointsFor(data.tables.hd, age);
-  const stroke = pointsFor(data.tables.stroke, age);
+  const hd = bmiPoints(data.tables.hd, age);
+  const stroke = bmiPoints(data.tables.stroke, age);
   const normal = at(hd, NORMAL);
   const heaviest = at(hd, HEAVIEST);
   const phrase = AGE_PHRASE[age] ?? age;
@@ -80,7 +66,7 @@ function specFor(data: BmiOutcomes, age: string): FigureSpec {
   ] as const) {
     for (const d of points) {
       rows.push([
-        d.bmi,
+        d.label,
         outcome,
         int(d.n) + (d.smallN ? " (thin)" : ""),
         pct(d.p),
@@ -115,7 +101,7 @@ function picker(
   for (const age of ages) {
     const opt = document.createElement("option");
     opt.value = age;
-    opt.textContent = age === "All" ? "All" : age;
+    opt.textContent = age;
     opt.selected = age === selected;
     select.appendChild(opt);
   }
@@ -148,7 +134,7 @@ export async function render(container: HTMLElement): Promise<void> {
   let age = ages[0] ?? "All";
 
   const plot = mountFigure(container, specFor(data, age));
-  plot.before(
+  controlSlot(plot).before(
     picker(ages, age, (next) => {
       age = next;
       updateFigure(container, specFor(data, age));
@@ -162,14 +148,14 @@ export async function render(container: HTMLElement): Promise<void> {
     const surface = cssVar("--surface");
     const traces = (
       [
-        ["Heart disease", pointsFor(data.tables.hd, age), c.s1],
-        ["Stroke", pointsFor(data.tables.stroke, age), c.s2],
+        ["Heart disease", bmiPoints(data.tables.hd, age), c.s1],
+        ["Stroke", bmiPoints(data.tables.stroke, age), c.s2],
       ] as const
     ).map(([name, points, color]): Partial<Plotly.PlotData> => ({
       type: "scatter",
       mode: "lines+markers",
       name,
-      x: points.map((d) => d.bmi),
+      x: points.map((d) => d.label),
       y: points.map((d) => d.p),
       customdata: points.map((d) => [d.lo, d.hi, d.n]),
       hovertemplate:
@@ -193,13 +179,7 @@ export async function render(container: HTMLElement): Promise<void> {
     const layout: Partial<Plotly.Layout> = {
       ...base,
       showlegend: true,
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.04,
-        yanchor: "bottom",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: horizontalLegend(),
       margin: { ...base.margin, t: 30 },
       hovermode: "closest",
       xaxis: {
@@ -214,7 +194,7 @@ export async function render(container: HTMLElement): Promise<void> {
         automargin: true,
         tickformat: ".0%",
         rangemode: "tozero",
-        title: { text: "Report the outcome", standoff: 8 },
+        title: { text: "Report this outcome", standoff: 8 },
       },
     };
     return Plotly.react(plot, traces, layout, CONFIG);

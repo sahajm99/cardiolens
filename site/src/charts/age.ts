@@ -1,10 +1,22 @@
 import { loadJson } from "../data.ts";
-import { mountFigure, showError, type FigureSpec } from "../figure.ts";
+import {
+  controlSlot,
+  mountFigure,
+  showError,
+  type FigureSpec,
+} from "../figure.ts";
 import { ciText, int, pct } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { Prevalence, PrevalenceRow } from "../types.ts";
-import { CONFIG, layoutTemplate, series } from "./theme.ts";
+import {
+  CONFIG,
+  errorBars,
+  horizontalLegend,
+  layoutTemplate,
+  reversed,
+  series,
+} from "./theme.ts";
 
 type Mode = "all" | "sex";
 
@@ -29,15 +41,6 @@ function toPoints(rows: PrevalenceRow[], bandIndex = 0): Point[] {
     }));
 }
 
-/**
- * Plotly stacks the first y category at the bottom, so the array is reversed:
- * the youngest band sits at the top and the bars lengthen as the eye travels
- * down, in the same order as the sentence above the chart.
- */
-function reversed<T>(xs: T[]): T[] {
-  return xs.slice().reverse();
-}
-
 const HOVER =
   "%{y}<br><b>%{x:.1%}</b> (95% CI %{customdata[0]:.1%} to %{customdata[1]:.1%})<br>n = %{customdata[2]:,}";
 
@@ -59,15 +62,12 @@ function barTrace(
     hovertemplate: `${HOVER}<extra>${showName ? name : ""}</extra>`,
     marker: { color },
     width: 0.6,
-    error_x: {
-      type: "data",
-      symmetric: false,
-      array: pts.map((d) => d.hi - d.p),
-      arrayminus: pts.map((d) => d.p - d.lo),
-      color: errorColor,
-      thickness: 1,
-      width: 3,
-    },
+    error_x: errorBars(
+      pts.map((d) => d.p),
+      pts.map((d) => d.lo),
+      pts.map((d) => d.hi),
+      errorColor,
+    ),
   };
 }
 
@@ -126,10 +126,10 @@ export async function render(container: HTMLElement): Promise<void> {
 
   const spec: FigureSpec = {
     id: "fig-age",
-    title: `Heart disease climbs from ${pct(young.p)} of adults aged 18 to 24 to ${pct(old.p)} at 80 and older`,
+    title: `Heart disease climbs from ${pct(young.p)} of adults aged ${young.band} to ${pct(old.p)} of adults aged ${old.band}`,
     subtitle: `${int(byAge.n_total)} adults, unweighted, 95% Wilson intervals`,
     note: "Source: Kaggle extract of CDC BRFSS 2020",
-    alt: `Bar chart. Self-reported heart disease prevalence rises with age, from ${pct(young.p)} of adults aged 18 to 24 to ${pct(old.p)} of adults aged 80 and older.`,
+    alt: `Bar chart. Self-reported heart disease prevalence rises with age, from ${pct(young.p)} of adults aged ${young.band} to ${pct(old.p)} of adults aged ${old.band}.`,
     table: {
       columns: ["Age band", "Adults", "Prevalence", "95% CI"],
       rows: all.map((d) => [d.band, int(d.n), pct(d.p), ciText(d.lo, d.hi)]),
@@ -138,19 +138,32 @@ export async function render(container: HTMLElement): Promise<void> {
 
   const plot = mountFigure(container, spec);
   let mode: Mode = "all";
-  plot.before(segControl(mode, (m) => {
-    mode = m;
-    void draw();
-  }));
+  controlSlot(plot).before(
+    segControl(mode, (m) => {
+      mode = m;
+      void draw();
+    }),
+  );
 
   function draw(): Promise<unknown> {
     const c = series();
     const errorColor = cssVar("--ink-2");
+    // Plotly gives the first trace the lowest offset, which is the bottom of
+    // each group, so the traces are reversed and the legend with them: the
+    // bars then read top to bottom in the order the legend lists them.
     const traces =
       mode === "all"
         ? [barTrace(all, c.s1, errorColor, "All adults", false)]
-        : bySex.map((s, i) =>
-            barTrace(s.points, i === 0 ? c.s1 : c.s2, errorColor, s.level, true),
+        : reversed(
+            bySex.map((s, i) =>
+              barTrace(
+                s.points,
+                i === 0 ? c.s1 : c.s2,
+                errorColor,
+                s.level,
+                true,
+              ),
+            ),
           );
     const base = layoutTemplate();
     const layout: Partial<Plotly.Layout> = {
@@ -158,13 +171,7 @@ export async function render(container: HTMLElement): Promise<void> {
       barmode: "group",
       bargroupgap: 0.08,
       showlegend: mode === "sex",
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.06,
-        yanchor: "bottom",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: { ...horizontalLegend(1.06), traceorder: "reversed" },
       margin: { ...base.margin, t: mode === "sex" ? 28 : 8 },
       xaxis: {
         ...base.xaxis,

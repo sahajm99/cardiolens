@@ -31,3 +31,29 @@ export function ciText(lo: number, hi: number, digits = 1): string {
 export function oneIn(n: number): string {
   return `1 in ${int(n)}`;
 }
+
+/** First words that keep their capital when a label starts a phrase. */
+const PROPER = new Set([
+  "American",
+  "Alaskan",
+  "Asian",
+  "Black",
+  "Hispanic",
+  "White",
+]);
+
+/**
+ * A label as it reads mid-sentence: the first letter drops to lower case,
+ * unless the first word is an acronym ("BMI class") or a proper noun.
+ */
+export function lowerLead(label: string): string {
+  const first = label.split(" ")[0] ?? "";
+  if (PROPER.has(first)) return label;
+  if (/[A-Z]/.test(first.slice(1))) return label;
+  return label.charAt(0).toLowerCase() + label.slice(1);
+}
+
+/** A label that starts a sentence: the first letter rises to upper case. */
+export function upperLead(label: string): string {
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}

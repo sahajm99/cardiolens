@@ -3,40 +3,18 @@ import { mountFigure, showError, type FigureSpec } from "../figure.ts";
 import { ciText, int, pct } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
-import type { Prevalence, PrevalenceRow } from "../types.ts";
-import { CONFIG, errorBars, layoutTemplate, series } from "./theme.ts";
+import type { Prevalence } from "../types.ts";
+import { pointsFor, type Point } from "./points.ts";
+import {
+  CONFIG,
+  errorBars,
+  horizontalLegend,
+  layoutTemplate,
+  series,
+} from "./theme.ts";
 
 const SHORT = "Under 6h";
 const MIDDLE = "6-7h";
-
-interface Point {
-  band: string;
-  p: number;
-  lo: number;
-  hi: number;
-  n: number;
-  smallN: boolean;
-}
-
-function pointsFor(data: Prevalence, age: string): Point[] {
-  const bands = data.levels["SleepBand"] ?? [];
-  const out: Point[] = [];
-  for (const band of bands) {
-    const row: PrevalenceRow | undefined = data.rows.find(
-      (r) => r.key[0] === age && r.key[1] === band,
-    );
-    if (!row || row.p === null || row.lo === null || row.hi === null) continue;
-    out.push({
-      band,
-      p: row.p,
-      lo: row.lo,
-      hi: row.hi,
-      n: row.n,
-      smallN: row.small_n,
-    });
-  }
-  return out;
-}
 
 /**
  * The claim only stands if short sleepers are above the 6-to-7-hour group in
@@ -47,8 +25,8 @@ function claim(
   groups: { age: string; points: Point[] }[],
 ): { title: string; extra: string } {
   const gaps = groups.map((g) => {
-    const short = g.points.find((d) => d.band === SHORT);
-    const middle = g.points.find((d) => d.band === MIDDLE);
+    const short = g.points.find((d) => d.label === SHORT);
+    const middle = g.points.find((d) => d.label === MIDDLE);
     return short && middle ? { age: g.age, gap: short.p - middle.p } : null;
   });
   const usable = gaps.filter((g): g is { age: string; gap: number } => g !== null);
@@ -86,7 +64,10 @@ export async function render(container: HTMLElement): Promise<void> {
   }
 
   const ages = data.levels["AgeGroup3"] ?? [];
-  const groups = ages.map((age) => ({ age, points: pointsFor(data, age) }));
+  const groups = ages.map((age) => ({
+    age,
+    points: pointsFor(data, "SleepBand", age),
+  }));
   const { title, extra } = claim(groups);
 
   const spec: FigureSpec = {
@@ -99,7 +80,7 @@ export async function render(container: HTMLElement): Promise<void> {
       columns: ["Sleep", "Age group", "Adults", "Prevalence", "95% CI"],
       rows: groups.flatMap((g) =>
         g.points.map((d) => [
-          d.band,
+          d.label,
           g.age,
           int(d.n),
           pct(d.p),
@@ -118,7 +99,7 @@ export async function render(container: HTMLElement): Promise<void> {
     const traces: Partial<Plotly.PlotData>[] = groups.map((g, i) => ({
       type: "bar",
       name: g.age,
-      x: g.points.map((d) => d.band),
+      x: g.points.map((d) => d.label),
       y: g.points.map((d) => d.p),
       customdata: g.points.map((d) => [d.lo, d.hi, d.n]),
       hovertemplate:
@@ -139,13 +120,7 @@ export async function render(container: HTMLElement): Promise<void> {
       barmode: "group",
       bargap: 0.3,
       showlegend: true,
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.04,
-        yanchor: "bottom",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: horizontalLegend(),
       margin: { ...base.margin, t: 30, l: 8 },
       xaxis: {
         ...base.xaxis,

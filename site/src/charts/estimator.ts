@@ -1,5 +1,5 @@
 import { loadJson } from "../data.ts";
-import { showError } from "../figure.ts";
+import { el, showError } from "../figure.ts";
 import { pct } from "../fmt.ts";
 import type { Estimator } from "../types.ts";
 
@@ -13,21 +13,24 @@ const MARKS = [
 const CAVEAT =
   "This is the pattern of association in one 2020 survey sample, not a medical risk score, and it holds alcohol use, asthma and skin cancer at 'No'. Nothing here is advice.";
 
-function el<K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text !== undefined) node.textContent = text;
-  return node;
+/**
+ * The three variables the caveat above promises are held at their reference
+ * level. If a pipeline run ever changes the model's held set, the note would
+ * quietly become false, so the panel refuses to draw instead.
+ */
+const HELD_IN_CAVEAT = ["AlcoholDrinking", "Asthma", "SkinCancer"];
+
+function sameSet(a: string[], b: string[]): boolean {
+  if (a.length !== b.length) return false;
+  const sorted = [...b].sort();
+  return [...a].sort().every((v, i) => v === sorted[i]);
 }
 
 /**
  * The primary model's linear predictor for one set of answers. A coefficient
- * the file does not carry is skipped rather than added as NaN, so the output
- * degrades to "as if at the reference level" instead of breaking.
+ * the file does not carry is an error rather than a skipped term: silently
+ * treating the answer as the reference level would print a number that the
+ * reader's answers did not produce.
  */
 function probability(est: Estimator, chosen: Map<string, string>): number {
   let logit = est.intercept;
@@ -35,8 +38,9 @@ function probability(est: Estimator, chosen: Map<string, string>): number {
     const level = chosen.get(input.variable) ?? input.default;
     const coef = est.coefficients[input.variable]?.[level];
     if (typeof coef !== "number" || !Number.isFinite(coef)) {
-      console.warn(`estimator: no coefficient for ${input.variable} = ${level}`);
-      continue;
+      throw new Error(
+        `The model file carries no coefficient for ${input.label} = "${level}".`,
+      );
     }
     logit += coef;
   }
@@ -97,6 +101,15 @@ export async function render(container: HTMLElement): Promise<void> {
     return;
   }
 
+  if (!sameSet(est.held_at_reference, HELD_IN_CAVEAT)) {
+    showError(
+      container,
+      "The model file holds different answers at their reference level than the note under this panel states, so the panel is not drawn.",
+      () => void render(container),
+    );
+    return;
+  }
+
   container.replaceChildren();
   container.appendChild(el("h3", "fig-title", "Put a profile through the model"));
   container.appendChild(
@@ -125,7 +138,7 @@ export async function render(container: HTMLElement): Promise<void> {
     }
     select.addEventListener("change", () => {
       chosen.set(input.variable, select.value);
-      update();
+      void update();
     });
     const label = el("label", undefined, input.label);
     label.htmlFor = select.id;
@@ -135,18 +148,25 @@ export async function render(container: HTMLElement): Promise<void> {
   container.appendChild(form);
 
   const out = el("div", "est-out");
-  out.setAttribute("aria-live", "polite");
   const value = el("p", "est-value");
   const sentence = el("p", "est-sentence");
   out.append(value, sentence);
-  container.appendChild(out);
-
   const scale = buildScale();
-  container.appendChild(scale.node);
-  container.appendChild(el("p", "fig-note", CAVEAT));
 
-  function update(): void {
-    const p = probability(est, chosen);
+  function update(): boolean {
+    let p: number;
+    try {
+      p = probability(est, chosen);
+    } catch (err) {
+      showError(
+        container,
+        err instanceof Error
+          ? err.message
+          : "The model file is missing a coefficient this panel needs.",
+        () => void render(container),
+      );
+      return false;
+    }
     const band = chosen.get("AgeCategory") ?? "";
     const bandRate = est.age_band_rates[band];
     // Room above the mark, but never past 100%: this is a share of people.
@@ -172,7 +192,13 @@ export async function render(container: HTMLElement): Promise<void> {
       }
     }
     scale.max.textContent = pct(max, 0);
+    return true;
   }
 
-  update();
+  // The first value is written before the live region joins the document, so
+  // a screen reader reads it as part of the panel rather than announcing it as
+  // a change the reader did not make.
+  if (!update()) return;
+  out.setAttribute("aria-live", "polite");
+  container.append(out, scale.node, el("p", "fig-note", CAVEAT));
 }

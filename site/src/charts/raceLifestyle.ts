@@ -1,10 +1,21 @@
 import { loadJson } from "../data.ts";
-import { mountFigure, showError, type FigureSpec } from "../figure.ts";
+import {
+  mountFigure,
+  showError,
+  updateFigure,
+  type FigureSpec,
+} from "../figure.ts";
 import { int, pct } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { RacePrevalence, Summary, SummaryRow } from "../types.ts";
-import { CONFIG, errorBars, layoutTemplate, series } from "./theme.ts";
+import {
+  CONFIG,
+  errorBars,
+  layoutTemplate,
+  reversed,
+  series,
+} from "./theme.ts";
 
 /** Below this width the three panels stack instead of sitting side by side. */
 const NARROW = 640;
@@ -61,13 +72,8 @@ const METRICS: Metric[] = [
   },
 ];
 
-/**
- * Plotly stacks the first y category at the bottom, so the array is reversed:
- * the groups read top to bottom in the order the file delivers them.
- */
-function reversed<T>(xs: T[]): T[] {
-  return xs.slice().reverse();
-}
+/** One resize listener for the module, however often `render` is called. */
+let listening = false;
 
 function fold(values: number[]): number {
   const lo = Math.min(...values);
@@ -121,12 +127,16 @@ export async function render(container: HTMLElement): Promise<void> {
     ? `Lifestyle measures vary far less between groups than heart disease does: ${span}`
     : `Lifestyle measures by group: ${span}`;
 
-  const spec: FigureSpec = {
+  let stacked = container.clientWidth > 0 && container.clientWidth < NARROW;
+
+  // The alt text describes the layout the reader is actually looking at, so it
+  // is rebuilt when the panels stack.
+  const spec = (): FigureSpec => ({
     id: "fig-race-lifestyle",
     title,
     subtitle: `${metrics.length === 1 ? "One measure" : `${metrics.length === 2 ? "Two" : "Three"} measures`} per group, each on its own scale; 95% intervals`,
     note: "Source: Kaggle extract of CDC BRFSS 2020",
-    alt: `${metrics.length} small panels side by side, one per lifestyle measure, each with a dot and 95% interval per group. ${title}.`,
+    alt: `${metrics.length} small panels ${stacked ? "stacked one above another" : "side by side"}, one per lifestyle measure, each with a dot and 95% interval per group. ${title}.`,
     table: {
       columns: [
         "Group",
@@ -143,10 +153,9 @@ export async function render(container: HTMLElement): Promise<void> {
         }),
       ]),
     },
-  };
+  });
 
-  const plot = mountFigure(container, spec);
-  let stacked = container.clientWidth > 0 && container.clientWidth < NARROW;
+  const plot = mountFigure(container, spec());
 
   function draw(): Promise<unknown> {
     const c = series();
@@ -253,14 +262,18 @@ export async function render(container: HTMLElement): Promise<void> {
     );
   }
 
-  window.addEventListener("resize", () => {
-    if (!plot.isConnected) return;
-    const next = container.clientWidth > 0 && container.clientWidth < NARROW;
-    if (next === stacked) return;
-    stacked = next;
-    applyHeight();
-    void draw();
-  });
+  if (!listening) {
+    listening = true;
+    window.addEventListener("resize", () => {
+      if (!plot.isConnected) return;
+      const next = container.clientWidth > 0 && container.clientWidth < NARROW;
+      if (next === stacked) return;
+      stacked = next;
+      applyHeight();
+      updateFigure(container, spec());
+      void draw();
+    });
+  }
 
   onThemeChange(() => {
     if (plot.isConnected) void draw();

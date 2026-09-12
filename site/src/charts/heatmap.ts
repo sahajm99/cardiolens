@@ -1,5 +1,6 @@
 import { loadJson } from "../data.ts";
 import {
+  controlSlot,
   mountFigure,
   showError,
   updateFigure,
@@ -97,8 +98,10 @@ function lead(cells: Cell[], worst: Cell): string {
     : "BMI and sleep together separate people";
 }
 
-function specFor(data: Prevalence, stratum: string): FigureSpec {
+/** Null when the file carries no cell with an estimate, which is a broken file. */
+function specFor(data: Prevalence, stratum: string): FigureSpec | null {
   const all = cellsOf(data, "All").filter((c) => c.row.p !== null);
+  if (!all.length) return null;
   const worst = all.reduce((a, b) =>
     (b.row.p as number) > (a.row.p as number) ? b : a,
   );
@@ -157,8 +160,13 @@ function segControl(
   return group;
 }
 
-/** Below this, a value written on a cell is not readable against its fill. */
-const MIN_LABEL_CONTRAST = 3.2;
+/**
+ * Below this, a value written on a cell is not comfortable to read against its
+ * fill. It is set above the WCAG large-text floor on purpose: at the floor the
+ * darkest light-mode stop keeps dark text on a dark blue cell, which passes
+ * and still reads badly.
+ */
+const MIN_LABEL_CONTRAST = 4.5;
 
 /**
  * One label colour has to serve every cell, so the ramp is capped: the label
@@ -203,11 +211,20 @@ export async function render(container: HTMLElement): Promise<void> {
     ...data.rows.filter((r) => r.p !== null).map((r) => r.p as number),
   );
 
-  const plot = mountFigure(container, specFor(data, stratum));
-  plot.before(
+  const spec = specFor(data, stratum);
+  if (!spec) {
+    showError(container, "The heat map file carries no drawable cells.", () =>
+      void render(container),
+    );
+    return;
+  }
+
+  const plot = mountFigure(container, spec);
+  controlSlot(plot).before(
     segControl(strata, stratum, (level) => {
       stratum = level;
-      updateFigure(container, specFor(data, stratum));
+      const next = specFor(data, stratum);
+      if (next) updateFigure(container, next);
       void draw();
     }),
   );

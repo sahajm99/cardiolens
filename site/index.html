@@ -15,19 +15,36 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316181d'/%3E%3Cg fill='%232a78d6'%3E%3Crect x='6' y='19' width='5' height='7'/%3E%3Crect x='13.5' y='13' width='5' height='13'/%3E%3Crect x='21' y='6' width='5' height='20'/%3E%3C/g%3E%3C/svg%3E"
     />
     <script>
-      // Paint the chosen theme before first paint, so there is no flash.
+      // Paint the chosen theme before first paint, so there is no flash, and
+      // put the toggle in the state that matches it, so its label is never a
+      // lie about what the button will do.
       (function () {
-        try {
-          var t = localStorage.getItem("cardiolens-theme");
-          if (t !== "light" && t !== "dark") {
-            t = window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
+        function prefersDark() {
+          try {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches;
+          } catch (e) {
+            return false;
           }
-          document.documentElement.setAttribute("data-theme", t);
+        }
+        var t;
+        try {
+          t = localStorage.getItem("cardiolens-theme");
         } catch (e) {
           /* private mode: fall back to the media query */
         }
+        if (t !== "light" && t !== "dark") t = prefersDark() ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("theme-toggle");
+          if (!btn) return;
+          btn.setAttribute("aria-pressed", String(t === "dark"));
+          btn.setAttribute(
+            "aria-label",
+            t === "dark"
+              ? "Dark theme, switch to light"
+              : "Light theme, switch to dark",
+          );
+        });
       })();
     </script>
     <script type="module" src="/src/main.ts"></script>
@@ -63,10 +80,10 @@
     <noscript>
       <div class="noscript">
         <p>
-          This page needs JavaScript to draw its charts and to fill in the
-          numbers quoted in the text. The written argument below still reads
-          without it, and every figure also exists as a table once scripts are
-          enabled.
+          The written argument below reads without JavaScript. The numbers
+          quoted inside it do not: they are filled in from the same JSON files
+          the charts use, so with scripts off you will see a placeholder where
+          each number belongs, and no charts or tables at all.
         </p>
       </div>
     </noscript>
@@ -78,10 +95,11 @@
           adults report heart disease. That average describes almost no one.
         </h1>
         <p class="hero-lede">
-          Self-reported heart disease in the CDC Behavioral Risk Factor
-          Surveillance System sample for 2020. Every number on this page comes
-          from the same file, and every chart states how many people it stands
-          on.
+          Self-reported heart disease among
+          <span data-stat="n_rows|int">&hellip;</span> adults in the CDC
+          Behavioral Risk Factor Surveillance System sample for 2020. Every
+          number on this page comes from that one file, and every chart says how
+          many people it stands on.
         </p>
         <p class="differentiator">
           No classifier and no accuracy score. Estimation with stated
@@ -94,6 +112,10 @@
               >&hellip;</span
             >
             <span class="tile-label">of all adults in the sample</span>
+            <span class="tile-ci"
+              >95% CI <span data-stat="prev_overall_lo|pct">&hellip;</span> to
+              <span data-stat="prev_overall_hi|pct">&hellip;</span></span
+            >
           </li>
           <li class="tile">
             <span class="tile-value stat" data-stat="prev_youngest|pct"
@@ -109,52 +131,168 @@
           </li>
         </ul>
 
+        <p class="tiles-note">
+          <span data-stat="ratio_oldest_youngest|ratio">&hellip;</span> from the
+          youngest band to the oldest.
+        </p>
+
         <div class="read-first">
-          <p>
-            Read this first. These are unweighted self-reports from a
-            cross-sectional telephone survey, so nothing here shows cause, and
-            the intervals are narrower than the truth.
-            <a href="#limits">What this data cannot tell you</a>.
-          </p>
+          <p class="read-first-head">Read this first.</p>
+          <ul>
+            <li>
+              Every answer is self-reported over the telephone, including the
+              height and weight behind the BMI classes.
+              <a href="#limits">What that costs</a>.
+            </li>
+            <li>
+              This is a third party's extract of the survey:
+              <span data-stat="dropped_by_kaggle|int">&hellip;</span>
+              respondents were removed before the file reached this pipeline.
+              <a href="#limits">How the rows reconcile</a>.
+            </li>
+            <li>
+              It is one cross-section with no follow-up, so nothing here shows
+              cause. <a href="#limits">The rest of the limits</a>.
+            </li>
+          </ul>
         </div>
       </section>
 
       <section id="age">
         <h2>Is it just age?</h2>
+        <p>
+          Ask this file almost any question and part of the answer is age. Among
+          adults aged 18 to 24, <span data-stat="prev_youngest|pct">&hellip;</span>
+          report heart disease. Among adults aged 80 and older it is
+          <span data-stat="prev_oldest|pct">&hellip;</span>, about
+          <span data-stat="ratio_oldest_youngest|ratio">&hellip;</span> as high.
+        </p>
+        <p>
+          That gradient is the spine of everything below it. Any two groups that
+          differ in age inherit part of it before they differ in anything else.
+        </p>
         <figure class="fig" data-chart="age" style="--fig-h: 520px"></figure>
-        <!-- Task 9 replaces these placeholder lines with the written argument. -->
-        <p>Age is not the only thing that separates people in this file.</p>
+
+        <p>
+          Age is not the only line through this sample. Smokers report heart
+          disease at <span data-stat="prev_smokers|pct">&hellip;</span> against
+          <span data-stat="prev_nonsmokers|pct">&hellip;</span> of non-smokers, a
+          crude gap of
+          <span data-stat="ratio_smoking_crude|ratio">&hellip;</span>. Adults who
+          report no physical activity sit at
+          <span data-stat="prev_inactive|pct">&hellip;</span> against
+          <span data-stat="prev_active|pct">&hellip;</span> of physically active
+          adults, a crude gap of
+          <span data-stat="ratio_activity_crude|ratio">&hellip;</span>. Side by
+          side, the two look like the same finding.
+        </p>
         <figure class="fig" data-chart="factors" style="--fig-h: 560px"></figure>
-        <p>So hold age fixed and look inside each band.</p>
+
+        <p>
+          A crude gap compares two groups that differ in more than the factor it
+          names, and the obvious suspect is age. So hold age fixed: the chart
+          below splits one factor at a time into age bands and draws both curves
+          inside every band.
+        </p>
         <figure
           class="fig"
           data-chart="factor-by-age"
           style="--fig-h: 460px"
         ></figure>
+        <p>
+          Change the factor with the picker. Some pairs of curves stay apart in
+          every band; others close up once age is held fixed, and the claim above
+          the chart says which.
+        </p>
       </section>
 
       <section id="survives">
         <h2>What survives</h2>
-        <!-- Task 9 replaces these placeholder lines with the written argument. -->
-        <p>Adjust every factor for age and for each other, and some of the gaps
-        above shrink or vanish.</p>
+        <p>
+          Holding age fixed one factor at a time only goes so far, because the
+          factors also travel with each other. A logistic model can hold all of
+          them fixed at once and report what each one is still associated with.
+        </p>
+        <p>
+          This page fits two. The primary model carries age band, sex, BMI class,
+          smoking, heavy drinking, diabetes, stroke, kidney disease, asthma and
+          skin cancer. The second adds physical activity, difficulty walking and
+          self-rated health.
+        </p>
+        <p>
+          Those last three sit in their own panel because they are plausibly
+          consequences of heart disease rather than causes of it. A person who
+          has had a heart attack may well report difficulty walking and fair
+          health because of it. Put them in the same column as smoking and they
+          absorb the effect of everything upstream of them.
+        </p>
+        <p>
+          The crude gap for inactivity
+          (<span data-stat="ratio_activity_crude|ratio">&hellip;</span>) becomes
+          an adjusted odds ratio of
+          <span data-stat="or_activity_full|ratio">&hellip;</span> for inactive
+          against active adults once age and self-rated health are held fixed:
+          the gap is gone. Smoking's does not go
+          (<span data-stat="or_smoking_primary|ratio">&hellip;</span>), and
+          neither does a prior stroke
+          (<span data-stat="or_stroke_primary|ratio">&hellip;</span>), kidney
+          disease (<span data-stat="or_kidney_primary|ratio">&hellip;</span>) or
+          diabetes
+          (<span data-stat="or_diabetes_primary|ratio">&hellip;</span>).
+        </p>
         <figure class="fig" data-chart="forest" style="--fig-h: 760px"></figure>
-        <p>The same coefficients, run forwards for one set of answers.</p>
+        <p>
+          One row reads the wrong way round. Heavy drinking lands below 1, which
+          would say heavy drinkers report less heart disease. That is the
+          sick-quitter pattern familiar in cross-sectional surveys: people who
+          stop drinking after a diagnosis are counted with the non-drinkers,
+          which loads the comparison group with the very people the question is
+          about. It is not evidence that drinking protects anyone.
+        </p>
+
+        <p>
+          The same coefficients can be run forwards. Pick a set of answers and
+          the panel evaluates the primary model for that profile, beside the
+          survey average and the average for the same age band.
+        </p>
         <div class="panel" data-chart="estimator" style="--fig-h: 520px"></div>
       </section>
 
       <section id="interactions">
         <h2>Interactions</h2>
-        <!-- Task 9 replaces these placeholder lines with the written argument. -->
-        <p>Risk factors do not queue up politely; they land on the same people.</p>
+        <p>
+          Factors do not arrive one at a time. They land on the same people, and
+          the combinations are where the numbers get large.
+        </p>
+        <p>
+          The grid below crosses BMI class with usual hours of sleep. Its
+          loudest cells are not only the short sleepers: long sleep sits high
+          too, so the pattern runs along both ends of the sleep range. Long
+          sleep is itself a common marker of other illness, which is one reason
+          not to read this grid as a set of instructions.
+        </p>
         <figure class="fig" data-chart="heatmap" style="--fig-h: 520px"></figure>
-        <p>Sleep is the axis that moves most within an age group.</p>
+        <p>
+          The buttons narrow the grid to adults reporting a given number of poor
+          mental-health days in the last month. The cells thin out quickly, and
+          the intervals in the table widen with them.
+        </p>
+
+        <p>
+          Sleep on its own next, inside three broad age groups, so the shape can
+          be read without the whole age gradient underneath it.
+        </p>
         <figure
           class="fig"
           data-chart="sleep-age"
           style="--fig-h: 460px"
         ></figure>
-        <p>And BMI carries more than one outcome with it.</p>
+
+        <p>
+          BMI carries more than one outcome with it. The chart below draws heart
+          disease and stroke against the same five BMI classes, for one age
+          group at a time.
+        </p>
         <figure
           class="fig"
           data-chart="bmi-outcomes"
@@ -164,22 +302,56 @@
 
       <section id="gaps">
         <h2>Gaps this file cannot explain</h2>
-        <!-- Task 9 replaces these placeholder lines with the written argument. -->
-        <p>Groups differ in age before they differ in anything else.</p>
+        <p>
+          This file records each respondent's race and ethnicity. It does not
+          record income, education, insurance or where anybody lives. Those are
+          the variables that usually carry most of a health gap between groups,
+          and not one of them is here.
+        </p>
+        <p>
+          So this section describes and does not explain. No model on this page
+          uses race as a covariate either: a coefficient fitted without those
+          four variables invites exactly the causal reading the data cannot
+          support.
+        </p>
+        <p>
+          Standardising for age is the usual first move, and on this file it
+          does not close the gap. It moves individual groups, and not all in the
+          same direction: Hispanic and Asian rates rise, because those groups
+          are younger than the sample as a whole and a common age mix ages them.
+          The distance from the highest group to the lowest stays about where it
+          was, with <span data-stat="race_highest">&hellip;</span> adults highest
+          at <span data-stat="std_race_highest|pct">&hellip;</span> once every
+          group sits on one age mix.
+        </p>
         <figure class="fig" data-chart="race-std" style="--fig-h: 420px"></figure>
-        <p>A prior stroke dominates every group it appears in.</p>
+
+        <p>
+          A prior stroke dominates every group it appears in, and the difference
+          it makes is far larger than the differences between groups.
+        </p>
         <figure
           class="fig"
           data-chart="race-stroke"
           style="--fig-h: 460px"
         ></figure>
-        <p>What people say about their own health differs too.</p>
+
+        <p>
+          What people say about their own health differs by group as well, and
+          self-rated health carried the largest odds ratios of any term in the
+          model above apart from age itself.
+        </p>
         <figure
           class="fig"
           data-chart="race-health"
           style="--fig-h: 420px"
         ></figure>
-        <p>The lifestyle measures in this file are far flatter than the gaps.</p>
+
+        <p>
+          The lifestyle measures this file does carry are far flatter between
+          groups than heart disease is, which is the point of the section: what
+          would account for the gap is not in the file.
+        </p>
         <figure
           class="fig"
           data-chart="race-lifestyle"
@@ -187,19 +359,106 @@
         ></figure>
       </section>
 
-      <section id="limits"><h2>What this data cannot tell you</h2></section>
+      <section id="limits">
+        <h2>What this data cannot tell you</h2>
+        <p>Each of these applies to every number above it.</p>
+        <ul class="limits">
+          <li>
+            <strong>Everything is self-reported.</strong> The outcome is an
+            answer to whether a doctor has ever said the respondent had coronary
+            heart disease or a heart attack, so it measures a diagnosis a person
+            remembers and is willing to repeat down the phone. Height and weight
+            are self-reported too, and the BMI classes are built from them.
+          </li>
+          <li>
+            <strong>The file is a third party's extract.</strong> The 2020
+            survey reached
+            <span data-stat="brfss_2020_respondents|int">&hellip;</span>
+            respondents. This file carries
+            <span data-stat="n_rows|int">&hellip;</span> rows. The
+            <span data-stat="dropped_by_kaggle|int">&hellip;</span> respondents
+            in between were removed by the Kaggle author in a cleaning step that
+            is not documented and cannot be reconstructed here, and whatever
+            selection that introduced travels into every number on this page.
+          </li>
+          <li>
+            <strong>No survey weights and no clustering.</strong> BRFSS is a
+            complex sample with weights and strata; the extract carries neither.
+            Every percentage here is unweighted sample prevalence, so it
+            describes the people in this file rather than US adults, and every
+            interval is narrower than the truth.
+          </li>
+          <li>
+            <strong>It is a cross-section.</strong> Exposure and outcome were
+            recorded in the same interview, so nothing here establishes
+            direction. Several of the associations almost certainly run
+            backwards: difficulty walking and fair self-rated health are at
+            least as likely to follow heart disease as to precede it, which is
+            why they are shown in their own panel.
+          </li>
+          <li>
+            <strong
+              ><span data-stat="n_duplicate_rows|int">&hellip;</span> rows are
+              exact duplicates, and they are kept.</strong
+            >
+            There is no respondent identifier, and with this few coarse columns
+            two different people can answer identically. Dropping
+            <span data-stat="pct_duplicate_rows|pct">&hellip;</span> of the
+            sample on that suspicion would be an edit to the data, not a
+            cleaning step.
+          </li>
+          <li>
+            <strong>No geography.</strong> The extract has no State column, so
+            there are no maps here and no regional comparison.
+          </li>
+          <li>
+            <strong
+              >The positive rate is
+              <span data-stat="prev_overall|pct">&hellip;</span>, and it needs no
+              correction.</strong
+            >
+            No classifier is fitted anywhere in this project, so there is
+            nothing to rebalance or resample. The rate matters in one way only:
+            it sets how wide a subgroup's interval is, which is why thin cells
+            are flagged and the thinnest are not drawn at all.
+          </li>
+          <li>
+            <strong>An odds ratio is not a prevalence ratio.</strong> The models
+            report odds. At a prevalence this low the two numbers are close, but
+            they are not the same number, and a large odds ratio on a rare
+            outcome is a smaller difference in people than it looks.
+          </li>
+          <li>
+            <strong>Suppression is applied, not hidden.</strong> A cell built on
+            too few adults carries no estimate at all, and a thin cell is drawn
+            flagged rather than quietly. Every figure carries its own table, so
+            the count behind each claim is one click away.
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer class="page-footer">
       <div>
         <p>
-          Data: Kaggle extract (kamilpytlak) of the CDC BRFSS 2020 survey.
-          Aggregates are produced by a Python pipeline in this repository and
-          committed as JSON; the site never reads the raw rows.
+          CardioLens is written and built by Sahaj
+          (<a href="https://github.com/sahajm99">sahajm99</a>).
         </p>
         <p>
+          Data:
+          <a
+            href="https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease"
+            >Personal Key Indicators of Heart Disease</a
+          >, a Kaggle extract by kamilpytlak of the CDC Behavioral Risk Factor
+          Surveillance System 2020 survey. The aggregates are produced by a
+          Python pipeline in this repository and committed as JSON; the site
+          never reads a raw row.
+        </p>
+        <p>Built with pandas, statsmodels, Vite and Plotly.</p>
+        <p>
           <a href="https://github.com/sahajm99/cardiolens">Source on GitHub</a>.
-          Code under the MIT licence.
+          Code under the MIT licence; the survey data belongs to the CDC and its
+          Kaggle redistributor.
         </p>
       </div>
     </footer>

@@ -12,7 +12,7 @@ export interface FigureSpec {
   table: { columns: string[]; rows: (string | number)[][] };
 }
 
-function el<K extends keyof HTMLElementTagNameMap>(
+export function el<K extends keyof HTMLElementTagNameMap>(
   tag: K,
   className?: string,
   text?: string,
@@ -28,8 +28,9 @@ function buildTable(spec: FigureSpec): HTMLDetailsElement {
   details.appendChild(el("summary", undefined, "Show the numbers"));
 
   const table = el("table");
-  const caption = el("caption", undefined, spec.title);
-  table.appendChild(caption);
+  // The claim is already the heading above the figure; the caption only has to
+  // say what the table is.
+  table.appendChild(el("caption", undefined, "Data behind this figure"));
 
   const thead = el("thead");
   const headRow = el("tr");
@@ -81,12 +82,24 @@ export function mountFigure(
   plot.id = `${spec.id}-plot`;
   plot.setAttribute("role", "img");
   plot.setAttribute("aria-label", spec.alt);
-  container.appendChild(plot);
+  // A wrapper the plot can scroll inside, so a chart too wide for a phone
+  // scrolls on its own without taking the claim and the table with it.
+  const scroll = el("div", "plot-scroll");
+  scroll.appendChild(plot);
+  container.appendChild(scroll);
 
   container.appendChild(buildTable(spec));
   container.appendChild(el("p", "fig-note", spec.note));
 
   return plot;
+}
+
+/**
+ * Where a control that belongs to a figure is inserted: before the plot's
+ * scroll wrapper, so the control never scrolls sideways with the plot.
+ */
+export function controlSlot(plot: HTMLElement): HTMLElement {
+  return plot.parentElement ?? plot;
 }
 
 /**
@@ -114,12 +127,15 @@ export function showError(
   retry: () => void,
 ): void {
   container.replaceChildren();
+  // The live region is mounted empty and filled afterwards, so a screen reader
+  // announces the message as a change rather than missing it in the markup it
+  // already read.
   const box = el("div", "fig-error");
   box.setAttribute("role", "status");
+  container.appendChild(box);
   box.appendChild(el("p", undefined, message));
   const btn = el("button", "fig-retry", "Try again");
   btn.type = "button";
   btn.addEventListener("click", retry);
   box.appendChild(btn);
-  container.appendChild(box);
 }

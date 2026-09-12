@@ -4,7 +4,9 @@
   margin: var(--space-5) 0 0;
   padding: 0;
   max-width: var(--fig-width);
-  min-height: var(--fig-h);
+  /* The fallback keeps the reserved height if a figure ever ships without its
+     own --fig-h, so a missing value cannot collapse the page into a jump. */
+  min-height: var(--fig-h, 480px);
 }
 
 .fig-title {
@@ -25,13 +27,13 @@
 }
 
 .fig .plot {
-  height: var(--fig-h);
+  height: var(--fig-h, 480px);
   width: 100%;
 }
 
 @media (max-width: 640px) {
   .fig .plot {
-    height: calc(var(--fig-h) * 0.85);
+    height: calc(var(--fig-h, 480px) * 0.85);
   }
 }
 
@@ -154,11 +156,6 @@
   border-color: var(--ink-3);
 }
 
-/* Plotly writes inline styles; keep its hover text in the page's voice. */
-.fig .plot .hoverlayer .hovertext text {
-  font-family: var(--font-ui);
-}
-
 /* Controls beside a figure: a native picker, styled to match the page. */
 .fig-picker {
   display: flex;
@@ -170,8 +167,7 @@
   color: var(--ink-2);
 }
 
-.fig-picker select,
-.panel select {
+.fig-picker select {
   background: var(--surface-2);
   border: 1px solid var(--grid);
   border-radius: var(--radius);
@@ -181,15 +177,32 @@
   padding: var(--space-2) var(--space-3);
 }
 
-/* The forest plot carries long level names beside 45 rows: below about 600px
-   it scrolls sideways rather than shrinking its labels into illegibility. */
+/* The forest plot carries long level names beside forty-odd rows: below about
+   600px the plot scrolls sideways inside its own wrapper rather than shrinking
+   its labels into illegibility. Only the plot moves; the claim, the table and
+   the note stay where the reader left them. */
 @media (max-width: 640px) {
-  .fig[data-chart="forest"] {
+  .fig[data-chart="forest"] .plot-scroll {
+    display: flex;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
   }
 
   .fig[data-chart="forest"] .plot {
-    height: var(--fig-h);
-    min-width: 600px;
+    flex: 0 0 600px;
+    height: var(--fig-h, 480px);
+  }
+
+  /* A fade pinned to the right edge of the scroller: the cue that there is
+     more chart than the screen is showing. */
+  .fig[data-chart="forest"] .plot-scroll::after {
+    content: "";
+    position: sticky;
+    right: 0;
+    flex: 0 0 32px;
+    margin-left: -32px;
+    align-self: stretch;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, var(--surface));
   }
 }

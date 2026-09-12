@@ -8,17 +8,11 @@ import {
   CONFIG,
   errorBars,
   hexToRgba,
+  horizontalLegend,
   layoutTemplate,
+  reversed,
   series,
 } from "./theme.ts";
-
-/**
- * Plotly stacks the first y category at the bottom, so the array is reversed:
- * the groups read top to bottom in the order the file delivers them.
- */
-function reversed<T>(xs: T[]): T[] {
-  return xs.slice().reverse();
-}
 
 function spread(values: number[]): number {
   return Math.max(...values) - Math.min(...values);
@@ -53,12 +47,16 @@ export async function render(container: HTMLElement): Promise<void> {
     Math.abs(b.crude - b.std) > Math.abs(a.crude - a.std) ? b : a,
   );
   // Standardising can pull the middle groups together and still leave the
-  // extremes further apart; the title says which of the two happened.
+  // extremes further apart. When it does narrow the spread the title says so;
+  // when it does not, the title stays neutral rather than asserting the
+  // opposite, because on this file the two spreads differ by a quarter of a
+  // percentage point, well inside the intervals either side.
   const narrows =
     spread(rows.map((r) => r.std)) < spread(rows.map((r) => r.crude));
+  const moves = `${label(moved)} moves from ${pct(moved.crude)} to ${pct(moved.std)}`;
   const title = narrows
-    ? `Age-standardising narrows the gap between groups: ${label(moved)} moves from ${pct(moved.crude)} to ${pct(moved.std)}`
-    : `Age-standardising does not narrow the gap between groups: ${label(moved)} moves from ${pct(moved.crude)} to ${pct(moved.std)}`;
+    ? `Age-standardising narrows the gap between groups: ${moves}`
+    : `Crude and age-standardised prevalence by group: ${moves}`;
   const thin = rows.filter((r) => r.small_n).map(label);
 
   const spec: FigureSpec = {
@@ -166,13 +164,7 @@ export async function render(container: HTMLElement): Promise<void> {
     const layout: Partial<Plotly.Layout> = {
       ...base,
       showlegend: true,
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.04,
-        yanchor: "bottom",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: horizontalLegend(),
       margin: { ...base.margin, t: 30 },
       hovermode: "closest",
       xaxis: {

@@ -7,7 +7,9 @@ import "./styles/figure.css";
 import "./styles/panel.css";
 
 import { loadJson } from "./data.ts";
+import { el } from "./figure.ts";
 import { whenVisible } from "./lazy.ts";
+import { initNav } from "./nav.ts";
 import { fillStats } from "./stats-fill.ts";
 import { initTheme, toggleTheme } from "./theme.ts";
 import type { Claims } from "./types.ts";
@@ -35,16 +37,53 @@ const CHARTS: Record<string, () => Promise<ChartModule>> = {
 /** The first figure is above the fold; everything below it waits. */
 const EAGER = new Set(["age"]);
 
+const NOTICE_ID = "claims-notice";
+
+/**
+ * Every number quoted in the prose comes from claims.json, so a failure to
+ * load it leaves placeholders in the middle of sentences. That is worth a
+ * visible notice at the top of the story, not only a console line.
+ */
+function showClaimsNotice(): void {
+  const main = document.querySelector("main");
+  if (!main || document.getElementById(NOTICE_ID)) return;
+  const box = el("div", "fig-error page-notice");
+  box.id = NOTICE_ID;
+  box.setAttribute("role", "status");
+  // Mounted empty, then filled, so the message is announced as a change.
+  main.prepend(box);
+  box.appendChild(
+    el(
+      "p",
+      undefined,
+      "The numbers quoted in the text below could not be loaded, so they are showing as placeholders. The charts fetch their own data and are not affected.",
+    ),
+  );
+  const btn = el("button", "fig-retry", "Try again");
+  btn.type = "button";
+  btn.addEventListener("click", fillNumbers);
+  box.appendChild(btn);
+}
+
+function fillNumbers(): void {
+  loadJson<Claims>("claims.json")
+    .then((claims) => {
+      fillStats(claims);
+      document.getElementById(NOTICE_ID)?.remove();
+    })
+    .catch((err: unknown) => {
+      console.error("Could not fill the numbers in the prose", err);
+      showClaimsNotice();
+    });
+}
+
 initTheme();
+initNav();
 document
   .getElementById("theme-toggle")
   ?.addEventListener("click", toggleTheme);
 
-loadJson<Claims>("claims.json")
-  .then(fillStats)
-  .catch((err: unknown) => {
-    console.error("Could not fill the numbers in the prose", err);
-  });
+fillNumbers();
 
 for (const el of document.querySelectorAll<HTMLElement>("[data-chart]")) {
   const name = el.dataset.chart ?? "";

@@ -41,16 +41,17 @@
   color: var(--ink);
 }
 
+/* The button's face is driven by aria-pressed alone: the inline head script
+   and the theme module both set it from the resolved theme, so the label a
+   sighted reader sees and the one a screen reader hears cannot disagree. */
 .theme-toggle .toggle-dark {
   display: none;
 }
 
-:root[data-theme="dark"] .theme-toggle .toggle-dark,
 .theme-toggle[aria-pressed="true"] .toggle-dark {
   display: inline;
 }
 
-:root[data-theme="dark"] .theme-toggle .toggle-light,
 .theme-toggle[aria-pressed="true"] .toggle-light {
   display: none;
 }
@@ -84,6 +85,16 @@
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* The section the reader is in. Underlined rather than boxed, so nothing in
+   the bar changes size as the page scrolls. */
+.section-nav a[aria-current="true"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
 
 @media (max-width: 640px) {
@@ -135,7 +146,7 @@ section > ol,
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-6);
-  margin: var(--space-6) 0;
+  margin: var(--space-6) 0 var(--space-3);
   padding: 0;
   list-style: none;
 }
@@ -160,7 +171,25 @@ section > ol,
   font-size: 0.9375rem;
   color: var(--ink-2);
   margin-top: var(--space-2);
-  max-width: 18ch;
+  max-width: 22ch;
+  /* Keep a short label from breaking in the middle of a phrase. */
+  text-wrap: pretty;
+}
+
+.tile .tile-ci {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+  margin-top: var(--space-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.tiles-note {
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  max-width: var(--prose-width);
+  margin: 0;
 }
 
 .read-first {
@@ -177,6 +206,39 @@ section > ol,
   margin: 0;
 }
 
+.read-first-head {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.read-first ul {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-4);
+}
+
+.read-first li {
+  margin-bottom: var(--space-2);
+}
+
+.read-first li:last-child {
+  margin-bottom: 0;
+}
+
+/* The limits are a list on purpose: each one is a separate thing to know. */
+.limits {
+  max-width: var(--prose-width);
+  padding-left: var(--space-4);
+}
+
+.limits li {
+  margin-bottom: var(--space-4);
+}
+
+.limits strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
 .page-footer {
   border-top: 1px solid var(--grid);
   margin-top: var(--space-7);
@@ -191,8 +253,19 @@ section > ol,
   margin: 0 auto;
 }
 
+.page-footer p {
+  max-width: var(--prose-width);
+}
+
 .page-footer a {
   color: var(--ink-2);
+}
+
+/* The one page-level failure notice: claims.json did not load, so the numbers
+   in the prose are placeholders. It borrows the figure error's dress. */
+.page-notice {
+  margin: var(--space-5) 0 0;
+  max-width: var(--prose-width);
 }
 
 .noscript {
@@ -205,8 +278,11 @@ section > ol,
 }
 
 @media print {
+  /* Three scopes, because a dark-preferring machine with scripts off never
+     gets a data-theme attribute and would otherwise print the dark palette. */
   :root,
-  :root[data-theme="dark"] {
+  :root[data-theme="dark"],
+  :root:not([data-theme="light"]) {
     --surface: #ffffff;
     --surface-2: #f1efe9;
     --ink: #16181d;

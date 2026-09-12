@@ -1,21 +1,20 @@
 import { loadJson } from "../data.ts";
 import { mountFigure, showError, type FigureSpec } from "../figure.ts";
-import { ciText, int, pct, ratio } from "../fmt.ts";
+import { ciText, int, lowerLead, pct, ratio } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { FactorContrast, FactorPrevalence, FactorSide } from "../types.ts";
-import { CONFIG, layoutTemplate, series } from "./theme.ts";
+import {
+  CONFIG,
+  errorBars,
+  horizontalLegend,
+  layoutTemplate,
+  reversed,
+  series,
+} from "./theme.ts";
 
 const HOVER =
   "%{customdata[3]}<br><b>%{x:.1%}</b> (95% CI %{customdata[0]:.1%} to %{customdata[1]:.1%})<br>n = %{customdata[2]:,}<extra>%{y}</extra>";
-
-/**
- * Plotly stacks the first y category at the bottom, so the array is reversed:
- * the widest gap sits at the top, in the order the file delivers.
- */
-function reversed<T>(xs: T[]): T[] {
-  return xs.slice().reverse();
-}
 
 function dotTrace(
   factors: FactorContrast[],
@@ -41,15 +40,12 @@ function dotTrace(
       size: 10,
       line: { color, width: 2 },
     },
-    error_x: {
-      type: "data",
-      symmetric: false,
-      array: cells.map((c) => c.hi - c.p),
-      arrayminus: cells.map((c) => c.p - c.lo),
-      color: errorColor,
-      thickness: 1,
-      width: 3,
-    },
+    error_x: errorBars(
+      cells.map((c) => c.p),
+      cells.map((c) => c.lo),
+      cells.map((c) => c.hi),
+      errorColor,
+    ),
   };
 }
 
@@ -80,11 +76,11 @@ export async function render(container: HTMLElement): Promise<void> {
 
   const spec: FigureSpec = {
     id: "fig-factors",
-    title: `${ratio(top.ratio)} the prevalence: ${top.label.toLowerCase()} shows the widest crude gap of any factor`,
+    title: `${ratio(top.ratio)} the prevalence: ${lowerLead(top.label)} shows the widest crude gap of any factor`,
     subtitle:
       "Crude (unadjusted) prevalence with 95% Wilson intervals; hollow = without the factor, filled = with it",
     note: "Source: Kaggle extract of CDC BRFSS 2020",
-    alt: `Dot plot of ${int(factors.length)} factors. For each, the share reporting heart disease with and without the factor. The widest crude gap is ${top.label.toLowerCase()}: ${pct(top.exposed.p)} of adults with ${top.exposed.label.toLowerCase()} against ${pct(top.unexposed.p)} of adults with ${top.unexposed.label.toLowerCase()}, a ratio of ${ratio(top.ratio)}.`,
+    alt: `Dot plot of ${int(factors.length)} factors. For each, the share reporting heart disease with and without the factor. The widest crude gap is ${lowerLead(top.label)}: ${pct(top.exposed.p)} of ${lowerLead(top.exposed.label)} against ${pct(top.unexposed.p)} of ${lowerLead(top.unexposed.label)}, a ratio of ${ratio(top.ratio)}.`,
     table: {
       columns: ["Factor", "Group", "Adults", "Prevalence", "95% CI", "Ratio"],
       rows: factors.flatMap((f) => [
@@ -135,13 +131,7 @@ export async function render(container: HTMLElement): Promise<void> {
     const layout: Partial<Plotly.Layout> = {
       ...base,
       showlegend: true,
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.04,
-        yanchor: "bottom",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: horizontalLegend(),
       margin: { ...base.margin, t: 30 },
       hovermode: "closest",
       xaxis: {

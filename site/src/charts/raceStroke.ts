@@ -4,39 +4,18 @@ import { ciText, int, pct } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { Prevalence } from "../types.ts";
-import { CONFIG, errorBars, layoutTemplate, series } from "./theme.ts";
+import { pointsFor, type Point } from "./points.ts";
+import {
+  CONFIG,
+  errorBars,
+  horizontalLegend,
+  layoutTemplate,
+  series,
+} from "./theme.ts";
 
 /** Two lines rather than one long tick: the names are wider than the bars. */
 function wrap(name: string): string {
   return name.length > 16 ? name.replace("/", "/<br>") : name;
-}
-
-interface Point {
-  race: string;
-  p: number;
-  lo: number;
-  hi: number;
-  n: number;
-  smallN: boolean;
-}
-
-function pointsFor(data: Prevalence, stroke: string): Point[] {
-  const out: Point[] = [];
-  for (const race of data.levels["Race"] ?? []) {
-    const row = data.rows.find(
-      (r) => r.key[0] === stroke && r.key[1] === race,
-    );
-    if (!row || row.p === null || row.lo === null || row.hi === null) continue;
-    out.push({
-      race,
-      p: row.p,
-      lo: row.lo,
-      hi: row.hi,
-      n: row.n,
-      smallN: row.small_n,
-    });
-  }
-  return out;
 }
 
 function range(points: Point[]): { lo: number; hi: number } {
@@ -61,8 +40,8 @@ export async function render(container: HTMLElement): Promise<void> {
     return;
   }
 
-  const without = pointsFor(data, "No");
-  const withStroke = pointsFor(data, "Yes");
+  const without = pointsFor(data, "Race", "No");
+  const withStroke = pointsFor(data, "Race", "Yes");
   if (!without.length || !withStroke.length) {
     showError(container, "The stroke interaction file carries no rows.", () =>
       void render(container),
@@ -74,23 +53,35 @@ export async function render(container: HTMLElement): Promise<void> {
   const yes = range(withStroke);
   // The claim names every group, so it only stands if it holds in every group.
   const everywhere = withStroke.every((d) => {
-    const other = without.find((o) => o.race === d.race);
+    const other = without.find((o) => o.label === d.label);
     return other !== undefined && d.p > other.p;
   });
   const title = everywhere
     ? `A prior stroke multiplies heart disease in every group: ${pct(yes.lo)} to ${pct(yes.hi)} with a stroke, against ${pct(no.lo)} to ${pct(no.hi)} without`
     : `Heart disease with and without a prior stroke: ${pct(yes.lo)} to ${pct(yes.hi)} with a stroke, against ${pct(no.lo)} to ${pct(no.hi)} without`;
 
-  const drawn = new Set([...without, ...withStroke].map((d) => d.race));
-  const missing = (data.levels["Race"] ?? []).filter((r) => !drawn.has(r));
+  // Three different things can be worth saying about a group, and each is
+  // said only about the groups it is actually true of.
+  const withNames = new Set(withStroke.map((d) => d.label));
+  const withoutNames = new Set(without.map((d) => d.label));
+  const levels = data.levels["Race"] ?? [];
+  const strokeCellGone = levels.filter(
+    (r) => withoutNames.has(r) && !withNames.has(r),
+  );
+  const absent = levels.filter(
+    (r) => !withoutNames.has(r) && !withNames.has(r),
+  );
   const thin = [...without, ...withStroke].filter((d) => d.smallN);
 
   let note = "Source: Kaggle extract of CDC BRFSS 2020.";
-  if (missing.length) {
-    note += ` Groups left out of the chart because a cell was suppressed: ${missing.join(", ")}.`;
+  if (strokeCellGone.length) {
+    note += ` These groups have no prior-stroke bar because that cell was suppressed: ${strokeCellGone.join(", ")}.`;
+  }
+  if (absent.length) {
+    note += ` Left out of the chart entirely because both cells were suppressed: ${absent.join(", ")}.`;
   }
   if (thin.length) {
-    note += ` Grey bars stand on fewer than 300 adults: ${thin.map((d) => `${d.race} with a stroke`).join(", ")}.`;
+    note += ` Grey bars sit on a thin cell, flagged small-n in the table.`;
   }
 
   const spec: FigureSpec = {
@@ -104,14 +95,14 @@ export async function render(container: HTMLElement): Promise<void> {
       columns: ["Group", "Prior stroke", "Adults", "Prevalence", "95% CI"],
       rows: [
         ...without.map((d) => [
-          d.race,
+          d.label,
           "No",
-          int(d.n),
+          int(d.n) + (d.smallN ? " (thin)" : ""),
           pct(d.p),
           ciText(d.lo, d.hi),
         ]),
         ...withStroke.map((d) => [
-          d.race,
+          d.label,
           "Yes",
           int(d.n) + (d.smallN ? " (thin)" : ""),
           pct(d.p),
@@ -134,9 +125,9 @@ export async function render(container: HTMLElement): Promise<void> {
     ).map(([name, points, color]): Partial<Plotly.PlotData> => ({
       type: "bar",
       name,
-      x: points.map((d) => wrap(d.race)),
+      x: points.map((d) => wrap(d.label)),
       y: points.map((d) => d.p),
-      customdata: points.map((d) => [d.lo, d.hi, d.n, d.race]),
+      customdata: points.map((d) => [d.lo, d.hi, d.n, d.label]),
       hovertemplate:
         "%{customdata[3]}<br><b>%{y:.1%}</b> (95% CI %{customdata[0]:.1%} to %{customdata[1]:.1%})<br>n = %{customdata[2]:,}" +
         `<extra>${name}</extra>`,
@@ -155,13 +146,7 @@ export async function render(container: HTMLElement): Promise<void> {
       barmode: "group",
       bargap: 0.28,
       showlegend: true,
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.04,
-        yanchor: "bottom",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: horizontalLegend(),
       margin: { ...base.margin, t: 30 },
       xaxis: {
         ...base.xaxis,

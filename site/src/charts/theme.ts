@@ -49,6 +49,29 @@ export const series = () => ({
   grid: cssVar("--grid"),
 });
 
+/**
+ * Plotly stacks the first y category at the bottom, so a list drawn down the
+ * page is reversed before it is handed over: the first item in the file ends
+ * up at the top, in the same order as the sentence above the chart.
+ */
+export function reversed<T>(xs: T[]): T[] {
+  return xs.slice().reverse();
+}
+
+/**
+ * The legend every chart uses: one row above the plot, left aligned with the
+ * claim, in the secondary ink. `y` moves it clear of a taller plot area.
+ */
+export function horizontalLegend(y = 1.04): Partial<Plotly.Legend> {
+  return {
+    orientation: "h",
+    x: 0,
+    y,
+    yanchor: "bottom",
+    font: { color: cssVar("--ink-2") },
+  };
+}
+
 export const CONFIG: Partial<Plotly.Config> = {
   displayModeBar: false,
   responsive: true,

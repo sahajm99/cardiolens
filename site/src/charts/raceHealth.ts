@@ -4,7 +4,14 @@ import { int, pct, pct0 } from "../fmt.ts";
 import Plotly from "../plotly.ts";
 import { cssVar, onThemeChange } from "../theme.ts";
 import type { Distribution, DistributionRow } from "../types.ts";
-import { CONFIG, inkOn, layoutTemplate, seqColorscale } from "./theme.ts";
+import {
+  CONFIG,
+  horizontalLegend,
+  inkOn,
+  layoutTemplate,
+  reversed,
+  seqColorscale,
+} from "./theme.ts";
 
 /** Below this share a segment is too narrow to carry a legible label. */
 const LABEL_MIN = 0.08;
@@ -15,15 +22,13 @@ const LABEL_PX = 40;
 /** Width the group names take off the plot before any bar is drawn. */
 const NAMES_PX = 150;
 
+/** The width below which the page is a phone and fewer labels fit. */
+const NARROW = 640;
+
 const FAIR_OR_POOR = ["Fair", "Poor"];
 
-/**
- * Plotly stacks the first y category at the bottom, so the array is reversed:
- * the groups read top to bottom in the order the file delivers them.
- */
-function reversed<T>(xs: T[]): T[] {
-  return xs.slice().reverse();
-}
+/** One resize listener for the module, however often `render` is called. */
+let listening = false;
 
 function share(row: DistributionRow, category: string): number {
   return row.shares[category] ?? 0;
@@ -122,14 +127,7 @@ export async function render(container: HTMLElement): Promise<void> {
       barmode: "stack",
       bargap: 0.3,
       showlegend: true,
-      legend: {
-        orientation: "h",
-        x: 0,
-        y: 1.04,
-        yanchor: "bottom",
-        traceorder: "normal",
-        font: { color: cssVar("--ink-2") },
-      },
+      legend: { ...horizontalLegend(), traceorder: "normal" },
       margin: { ...base.margin, t: 30 },
       xaxis: {
         ...base.xaxis,
@@ -144,12 +142,20 @@ export async function render(container: HTMLElement): Promise<void> {
   }
 
   // The label threshold is a width, so a resize can change which labels fit.
-  let width = container.clientWidth;
-  window.addEventListener("resize", () => {
-    if (!plot.isConnected || container.clientWidth === width) return;
-    width = container.clientWidth;
-    void draw();
-  });
+  // Only the crossing of the phone threshold changes enough of them to be
+  // worth a redraw, and the listener is registered once rather than on every
+  // call to render.
+  let narrow = container.clientWidth > 0 && container.clientWidth < NARROW;
+  if (!listening) {
+    listening = true;
+    window.addEventListener("resize", () => {
+      if (!plot.isConnected) return;
+      const next = container.clientWidth > 0 && container.clientWidth < NARROW;
+      if (next === narrow) return;
+      narrow = next;
+      void draw();
+    });
+  }
 
   onThemeChange(() => {
     if (plot.isConnected) void draw();
