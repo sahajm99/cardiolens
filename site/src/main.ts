@@ -23,6 +23,13 @@ const CHARTS: Record<string, () => Promise<ChartModule>> = {
   "factor-by-age": () => import("./charts/factorByAge.ts"),
   forest: () => import("./charts/forest.ts"),
   estimator: () => import("./charts/estimator.ts"),
+  heatmap: () => import("./charts/heatmap.ts"),
+  "sleep-age": () => import("./charts/sleepAge.ts"),
+  "bmi-outcomes": () => import("./charts/bmiOutcomes.ts"),
+  "race-std": () => import("./charts/raceStd.ts"),
+  "race-stroke": () => import("./charts/raceStroke.ts"),
+  "race-health": () => import("./charts/raceHealth.ts"),
+  "race-lifestyle": () => import("./charts/raceLifestyle.ts"),
 };
 
 /** The first figure is above the fold; everything below it waits. */

@@ -185,3 +185,94 @@ export interface Estimator {
   coefficients: Record<string, Record<string, number> | undefined>;
   age_band_rates: Record<string, number | undefined>;
 }
+
+/** `bmi_outcomes.v1`: one prevalence table per outcome, in one file. */
+export interface BmiOutcomes {
+  schema: "bmi_outcomes.v1";
+  id: string;
+  generated_at: string;
+  tables: { hd: Prevalence; stroke: Prevalence };
+}
+
+/**
+ * One group's crude and age-standardised prevalence. `min_band_n` is the
+ * thinnest age band behind the standardised estimate, which is what makes a
+ * standardised rate unstable even when the group total looks large.
+ */
+export interface RaceRow {
+  key: string[];
+  n: number;
+  events: number;
+  crude: number;
+  crude_lo: number;
+  crude_hi: number;
+  std: number;
+  std_lo: number;
+  std_hi: number;
+  min_band_n: number;
+  small_n: boolean;
+}
+
+/** `race_prevalence.v1`: crude against age-standardised, per group. */
+export interface RacePrevalence {
+  schema: "race_prevalence.v1";
+  id: string;
+  generated_at: string;
+  ci: { crude: string; standardised: string; level: number };
+  standard_population: Record<string, number>;
+  n_total: number;
+  events_total: number;
+  rows: RaceRow[];
+}
+
+/** One group's shares across the categories of `distribution.v1`. */
+export interface DistributionRow {
+  key: string[];
+  n: number;
+  shares: Record<string, number | undefined>;
+  small_n: boolean;
+  suppressed: boolean;
+}
+
+/** `distribution.v1`: how each group splits across one categorical column. */
+export interface Distribution {
+  schema: "distribution.v1";
+  id: string;
+  generated_at: string;
+  group_by: string[];
+  category_col: string;
+  categories: string[];
+  n_total: number;
+  rows: DistributionRow[];
+}
+
+/**
+ * One group's lifestyle means in `summary.v1`. Fields other than `bmi_*` and
+ * `activity_*` are optional: the panel draws whichever measures the file
+ * carries, so a later pipeline run can add one without a site change.
+ */
+export interface SummaryRow {
+  key: string[];
+  n: number;
+  bmi_mean: number | null;
+  bmi_lo: number | null;
+  bmi_hi: number | null;
+  activity_rate: number | null;
+  activity_lo: number | null;
+  activity_hi: number | null;
+  sleep_mean?: number | null;
+  sleep_lo?: number | null;
+  sleep_hi?: number | null;
+  small_n: boolean;
+  suppressed: boolean;
+}
+
+/** `summary.v1`: a mean (and interval) per group, for several measures. */
+export interface Summary {
+  schema: "summary.v1";
+  id: string;
+  generated_at: string;
+  group_by: string[];
+  n_total: number;
+  rows: SummaryRow[];
+}

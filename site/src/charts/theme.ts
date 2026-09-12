@@ -77,3 +77,78 @@ export function hexToRgba(hex: string, alpha: number): string {
   const b = n & 255;
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+
+/**
+ * The five sequential stops as a Plotly colorscale, low to high. The dark
+ * tokens are the light ones flipped in lightness, so `--seq-5` is always the
+ * end that contrasts most with the page and "more" always reads as "louder".
+ */
+export function seqColorscale(): [number, string][] {
+  return [0, 0.25, 0.5, 0.75, 1].map((pos, i) => [
+    pos,
+    cssVar(`--seq-${i + 1}`),
+  ]);
+}
+
+/** WCAG relative luminance of a hex colour; 0 for anything unparseable. */
+function luminance(hex: string): number {
+  const m = /^#?([\da-f]{3}|[\da-f]{6})$/i.exec(hex.trim());
+  if (!m) return 0;
+  const d = m[1]!;
+  const full =
+    d.length === 3
+      ? d
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : d;
+  const n = Number.parseInt(full, 16);
+  const channel = (v: number): number => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  };
+  return (
+    0.2126 * channel((n >> 16) & 255) +
+    0.7152 * channel((n >> 8) & 255) +
+    0.0722 * channel(n & 255)
+  );
+}
+
+/** The WCAG contrast ratio between two hex colours, 1 (same) to 21 (extreme). */
+export function contrastRatio(a: string, b: string): number {
+  const la = luminance(a);
+  const lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+/**
+ * `--ink` or `--surface`, whichever reads better on `bg`. Label colours inside
+ * a filled shape are picked this way rather than hard-coded, because the two
+ * themes put the same token at opposite ends of the lightness range.
+ */
+export function inkOn(bg: string): string {
+  const ink = cssVar("--ink");
+  const surface = cssVar("--surface");
+  return contrastRatio(bg, ink) >= contrastRatio(bg, surface) ? ink : surface;
+}
+
+/**
+ * An asymmetric interval as Plotly error bars. Shared by every chart that
+ * draws a 95% interval, so the hairline weight is decided in one place.
+ */
+export function errorBars(
+  mid: number[],
+  lo: number[],
+  hi: number[],
+  color: string,
+): Plotly.ErrorBar {
+  return {
+    type: "data",
+    symmetric: false,
+    array: mid.map((p, i) => (hi[i] ?? p) - p),
+    arrayminus: mid.map((p, i) => p - (lo[i] ?? p)),
+    color,
+    thickness: 1,
+    width: 3,
+  };
+}
