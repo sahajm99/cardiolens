@@ -66,3 +66,11 @@ Append one entry per milestone. Each entry records what was verified and how.
   every factor-by-age claim template checked against all six factors; the theme toggle
   reports the matching `aria-pressed` and `aria-label`; nav highlight steps through all
   six sections. Screenshots in `.superpowers/sdd/2026-09-12-cardiolens/shots/task9-*`.
+
+## 2026-09-12: Milestone 4, complete and verified
+
+- Commits `855b66f` (readable factor labels, sleep mean by race, extract note in notebook; 65 tests) and `2ee8d08` (narrative for all six sections, limits list, footer, nav highlight, accessibility and chart polish, strict TypeScript) pushed; CI runs 34703161881 and 34703826958 green (pipeline, staleness diff, pytest, notebook execution, build, deploy).
+- Live QA with headless Chrome on https://sahajm99.github.io/cardiolens/: 11 Plotly figures plus the estimator panel render after a full scroll, 0 error boxes, 0 unfilled `data-stat` spans, no console errors in light or dark or at 400px. Screenshots `shots/final-desktop-light.png`, `final-desktop-dark.png`, `final-mobile.png`.
+- Load time (browse tool `perf`, this machine): cold 3.15 s to `load` (domReady 2.98 s), warm 0.28 s and 0.04 s. The cold number is at the 3 s budget; the Plotly chunk (474 kB gzipped) is the whole cost. Not optimised further per the user's instruction to finish.
+- Per-task reviews were skipped for 9a and 9b at the user's request; the Task 7+8 review's Important finding (dumbbell title) was fixed inside 9b.
+- Portfolio: commit `2cc5872` on `sahajm99/portfolio` main adds the CardioLens entry with category `data-visualization` (union and filter tab extended) and hides the older `heart-disease-pipeline` card; pushed for Vercel to deploy.
